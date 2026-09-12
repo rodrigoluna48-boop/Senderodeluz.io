@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="Biblioteca Sendero de Luz — Escuela Espírita">
+<meta name="description" content="Biblioteca Sendero de Luz — Escuela Espírita. Recursos, reflexiones, oraciones y materiales sobre espiritualidad, estudio espírita y evolución interior.">
+<meta name="keywords" content="Biblioteca Sendero de Luz, Escuela Espírita, Espiritismo, espiritualidad, oraciones, evolución interior, Allan Kardec, Chico Xavier">
+<meta name="theme-color" content="#0C1124">
+<meta property="og:title" content="Biblioteca Sendero de Luz — Escuela Espírita">
+<meta property="og:description" content="Recursos, reflexiones y materiales inspirados en la Doctrina Espírita y la evolución espiritual.">
+<meta property="og:type" content="website">
 <title>Biblioteca Sendero de Luz — Escuela Espírita</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -564,9 +571,36 @@
   .care-resource strong{ color: var(--paper); }
   .care-resource span{ display:block; margin-top:4px; color: var(--paper-dim); font-size: 0.9rem; }
 
+  .site-footer{
+    padding: 52px 28px 30px; border-top: 1px solid var(--line);
+    background: rgba(12,17,36,1);
+  }
+  .footer-grid{
+    max-width: 1120px; margin: 0 auto; display:grid;
+    grid-template-columns: 1.3fr 1fr 1fr; gap: 32px;
+  }
+  .footer-brand h3{
+    font-size: 1.2rem; color: var(--paper); margin-bottom: 10px;
+  }
+  .footer-brand p,
+  .footer-col p,
+  .footer-col a,
+  .footer-note{
+    color: var(--paper-dim); font-size: 0.86rem;
+  }
+  .footer-col h4{
+    font-size: 0.9rem; color: var(--gold-soft); margin-bottom: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .footer-links{ display:flex; flex-direction:column; gap:8px; }
+  .footer-links a{ text-decoration:none; }
+  .footer-links a:hover{ color: var(--gold); }
+  .footer-note{
+    max-width: 1120px; margin: 26px auto 0; padding-top: 20px;
+    border-top: 1px solid var(--line); text-align:center;
+  }
   footer{
-    padding: 48px 28px; text-align:center; font-size:0.85rem;
-    color: var(--paper-dim); border-top: 1px solid var(--line);
+    padding: 0;
   }
   .floating-top{
     position: fixed; right: 22px; bottom: 22px; z-index: 40;
@@ -1571,8 +1605,34 @@ Haz que mi vida sea un reflejo de tu amor y que, allí donde vaya, pueda sembrar
   </div>
 </section>
 
-<footer>
-  Sendero de Luz — espacio de estudio espírita. Este sitio está en construcción; iremos sumando módulos.
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Biblioteca Sendero de Luz</h3>
+      <p>Espacio de estudio, reflexión y crecimiento interior inspirado en la Doctrina Espírita, el amor al prójimo y la búsqueda de la verdad.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Secciones</h4>
+      <div class="footer-links">
+        <a href="#personajes">Personajes</a>
+        <a href="#biblioteca">Biblioteca</a>
+        <a href="#biografias">Biografías</a>
+        <a href="#reflexion">Reflexión</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Recursos</h4>
+      <div class="footer-links">
+        <a href="#oraciones">Oraciones</a>
+        <a href="#espiritu-verdad">Espíritu de la Verdad</a>
+        <a href="#autodefensa">Autodefensa Energética</a>
+        <a href="#mito-realidad">Mito o Realidad</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-note">
+    Sendero de Luz — espacio de estudio espírita. Este sitio continúa creciendo con nuevos módulos y recursos.
+  </div>
 </footer>
 
 <button class="floating-top" id="backToTop" aria-label="Volver arriba">↑</button>
