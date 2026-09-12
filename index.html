@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biblioteca Sendero de Luz — Escuela Espírita</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-night: #0C1124;
+    --bg-night-soft: #171A36;
+    --bg-night-softer: #211D49;
+    --paper: #F5EFE1;
+    --paper-dim: #E4D5B8;
+    --gold: #D9B46A;
+    --gold-soft: #E5C77A;
+    --violet: #8E7DE0;
+    --ink: #1B1630;
+    --ink-soft: #534A6A;
+    --line: rgba(217,180,106,0.32);
+    --radius-panel: 2px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg-night);
+    color: var(--paper);
+    font-family: 'Public Sans', sans-serif;
+    line-height: 1.6;
+    position: relative;
+  }
+  body::before{
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(1.8px 1.8px at 8% 22%, rgba(245,239,225,0.9), transparent 60%),
+      radial-gradient(1.2px 1.2px at 22% 68%, rgba(229,199,122,0.75), transparent 60%),
+      radial-gradient(2px 2px at 38% 12%, rgba(142,125,224,0.65), transparent 60%),
+      radial-gradient(1.2px 1.2px at 52% 82%, rgba(245,239,225,0.7), transparent 60%),
+      radial-gradient(1.6px 1.6px at 68% 32%, rgba(245,239,225,0.8), transparent 60%),
+      radial-gradient(1.1px 1.1px at 81% 58%, rgba(245,239,225,0.55), transparent 60%),
+      radial-gradient(1.2px 1.2px at 14% 88%, rgba(142,125,224,0.55), transparent 60%),
+      radial-gradient(1.8px 1.8px at 46% 46%, rgba(245,239,225,0.72), transparent 60%),
+      radial-gradient(1.1px 1.1px at 92% 18%, rgba(245,239,225,0.52), transparent 60%),
+      radial-gradient(1.2px 1.2px at 30% 95%, rgba(229,199,122,0.5), transparent 60%),
+      radial-gradient(1.6px 1.6px at 62% 6%, rgba(245,239,225,0.7), transparent 60%),
+      radial-gradient(1.1px 1.1px at 96% 72%, rgba(142,125,224,0.48), transparent 60%);
+    background-repeat: repeat;
+    background-size: 480px 480px;
+  }
+  h1,h2,h3,h4{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+  a{ color: inherit; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+  .section-motif{
+    position:absolute; pointer-events:none; z-index:0; opacity:0.08;
+  }
+  .wrap{ position:relative; z-index:1; }
+
+  /* ---------- BIENVENIDA ---------- */
+  .bienvenida{ background: var(--bg-night); position:relative; }
+  .bienvenida .wrap{ max-width: 720px; }
+  .bienvenida p{
+    font-family:'Fraunces', serif; font-size: 1.15rem; line-height: 1.85;
+    color: var(--paper-dim); margin: 0 0 30px;
+  }
+  .bienvenida p:first-of-type::first-letter{
+    font-size: 3.4rem; float:left; line-height: 0.8; padding: 6px 10px 0 0;
+    color: var(--gold); font-weight:500;
+  }
+  .bienvenida .ornament{
+    text-align:center; color: var(--gold-soft); font-size: 1.1rem;
+    letter-spacing: 0.3em; margin-bottom: 36px;
+  }
+  .bienvenida p:last-of-type{
+    text-align:center; font-style: italic; color: var(--paper);
+    font-size: 1.25rem; margin-top: 44px;
+    text-shadow: 0 0 24px rgba(229,199,122,0.18);
+  }
+
+  /* ---------- NAV ---------- */
+  header.site{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(18,26,46,0.86);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 28px; gap: 24px;
+    max-width: 1120px; margin:0 auto;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px; flex-shrink:0;
+    font-family:'Fraunces', serif; font-size: 1.15rem; font-weight:500;
+    color: var(--paper);
+    text-decoration:none;
+  }
+  .brand .dot{
+    width:9px; height:9px; border-radius:50%;
+    background: radial-gradient(circle at 35% 35%, #fff6df, var(--gold) 70%);
+    box-shadow: 0 0 10px 2px rgba(216,165,74,0.6);
+  }
+  nav.links{
+    display:flex; gap: 24px; flex: 1; min-width: 0;
+    overflow-x: auto; overflow-y: hidden;
+    scrollbar-width: none; -ms-overflow-style: none;
+    mask-image: linear-gradient(to right, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+    justify-content: flex-start;
+  }
+  nav.links::-webkit-scrollbar{ display:none; }
+  nav.links a{
+    text-decoration:none; font-size:0.92rem; color: var(--paper-dim);
+    position:relative; padding-bottom:2px; white-space:nowrap; flex-shrink:0;
+  }
+  nav.links a:hover{ color: var(--gold); }
+  .nav-toggle{
+    display:none; width: 42px; height: 42px; border: 1px solid var(--line);
+    background: rgba(255,255,255,0.02); padding: 9px 8px; cursor:pointer;
+    align-items:center; justify-content:center; flex-direction:column; gap: 4px;
+  }
+  .nav-toggle span{
+    display:block; width: 18px; height: 2px; background: var(--paper);
+    border-radius: 2px; transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .nav-toggle.open span:nth-child(1){ transform: translateY(6px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2){ opacity: 0; }
+  .nav-toggle.open span:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
+  @media (max-width: 640px){
+    .nav-row{ padding: 14px 16px; gap: 14px; }
+    .brand{ font-size: 1.02rem; }
+    .nav-toggle{ display:flex; }
+    nav.links{
+      position: absolute; top: calc(100% + 8px); left: 16px; right: 16px;
+      background: rgba(18,26,46,0.96); border: 1px solid var(--line);
+      padding: 14px 16px; display:none; flex-direction:column; gap: 10px;
+      overflow: visible; mask-image:none; box-shadow: 0 16px 32px rgba(0,0,0,0.22);
+    }
+    nav.links.open{ display:flex; }
+    nav.links a{ font-size: 0.88rem; padding-bottom:0; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding: 96px 28px 120px;
+    text-align:center;
+    background:
+      radial-gradient(circle at top, rgba(142,125,224,0.28), transparent 42%),
+      linear-gradient(180deg, rgba(12,17,36,1) 0%, rgba(19,21,44,1) 100%);
+  }
+  .hero-path{
+    position:absolute; inset:0; width:100%; height:100%;
+    z-index:0;
+  }
+  .hero-inner{ position:relative; z-index:1; max-width: 680px; margin:0 auto; }
+  .hero-eyebrow{
+    font-size:0.85rem; color: var(--gold-soft); margin-bottom: 18px;
+    font-style: italic; font-family:'Fraunces', serif;
+    letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.12;
+    color: var(--paper);
+    text-shadow: 0 0 28px rgba(217,180,106,0.18);
+  }
+  .hero p.lead{
+    margin-top: 22px; font-size: 1.08rem; color: var(--paper-dim);
+    max-width: 520px; margin-left:auto; margin-right:auto;
+  }
+  .hero .cta-row{ margin-top: 36px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .btn{
+    display:inline-block; padding: 13px 26px; text-decoration:none;
+    font-size:0.95rem; border-radius: var(--radius-panel);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-gold{
+    background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+    color: #1D1A15; font-weight:600;
+    box-shadow: 0 12px 18px rgba(217,180,106,0.2), 0 0 24px rgba(217,180,106,0.18);
+  }
+  .btn-gold:hover{ box-shadow: 0 0 0 3px rgba(216,165,74,0.25); }
+  .btn-ghost{
+    border: 1px solid var(--line); color: var(--paper);
+  }
+  .btn-ghost:hover{ border-color: var(--gold); color: var(--gold); }
+
+  /* ---------- SECTION LABELS ---------- */
+  section{ padding: 90px 0; scroll-margin-top: 84px; }
+  .section-head{
+    display:flex; align-items:baseline; gap: 18px; margin-bottom: 48px;
+    border-bottom: 1px solid var(--line); padding-bottom: 22px;
+  }
+  .section-head .num{
+    font-family:'Fraunces', serif; font-style:italic; color: var(--gold-soft);
+    font-size: 1.4rem; opacity:0.8;
+  }
+  .section-head h2{ font-size: 2rem; color: var(--paper); }
+  .section-head .desc{
+    margin-left:auto; max-width: 340px; font-size:0.92rem; color: var(--paper-dim);
+    text-align:right;
+    letter-spacing: 0.02em;
+  }
+  @media (max-width: 760px){
+    .section-head{ flex-direction:column; }
+    .section-head .desc{ text-align:left; margin-left:0; }
+  }
+
+  /* ---------- PERSONAJES ---------- */
+  .personajes{ background: var(--bg-night); position:relative; overflow:hidden; }
+  .figura{
+    display:grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--line);
+    align-items:start;
+  }
+  .figura:last-child{ border-bottom:none; }
+  .medallion{
+    width: 148px; height:148px; border-radius:50%;
+    margin: 0 auto;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-size:2.6rem; color: var(--bg-night);
+    position:relative;
+  }
+  .medallion::before{
+    content:''; position:absolute; inset:-10px; border-radius:50%;
+    border: 1px solid var(--line);
+  }
+  .medallion.kardec{ background: radial-gradient(circle at 32% 30%, #fdf1cf, var(--gold) 75%); }
+  .medallion.xavier{ background: radial-gradient(circle at 32% 30%, #efe6ff, var(--violet) 78%); color: #F3ECD9;}
+  .medallion.ramatis{ background: radial-gradient(circle at 32% 30%, #d9f2ea, #4E8C7A 78%); color:#F3ECD9; }
+
+  .figura h3{ font-size: 1.5rem; color: var(--paper); text-shadow: 0 0 12px rgba(229,199,122,0.12); }
+  .figura .rol{ font-size:0.88rem; color: var(--gold-soft); margin-top:4px; font-style:italic; font-family:'Fraunces', serif;}
+  .figura .bio{ margin-top:14px; color: var(--paper-dim); font-size:0.98rem; max-width: 62ch; }
+  .obras{ margin-top: 20px; }
+  .obras .obras-label{ font-size:0.82rem; color: var(--gold-soft); margin-bottom:8px; }
+  .obras ul{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:10px; }
+  .obras li{
+    font-size:0.86rem; padding: 6px 12px; border: 1px solid var(--line);
+    color: var(--paper-dim);
+  }
+  @media (max-width: 640px){
+    .figura{ grid-template-columns: 1fr; text-align:center; }
+    .obras ul{ justify-content:center; }
+  }
+
+  /* ---------- BIBLIOTECA ---------- */
+  .biblioteca{ background: var(--paper); color: var(--ink); position:relative; overflow:hidden; }
+  .biblioteca .section-head{ border-bottom-color: rgba(29,26,21,0.15); }
+  .biblioteca .section-head h2{ color: var(--ink); }
+  .biblioteca .section-head .desc{ color: var(--ink-soft); }
+  .biblioteca .section-head .num{ color: var(--gold-soft); }
+
+  .shelf-toolbar{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom: 28px; gap:16px; flex-wrap:wrap;
+  }
+  .shelf-toolbar .count{ font-size:0.88rem; color: var(--ink-soft); }
+  .search-wrap{
+    display:flex; align-items:center; flex:1; min-width: 200px; max-width: 320px;
+    border: 1px solid rgba(29,26,21,0.25); background:#fff;
+  }
+  .search-input{
+    flex:1; padding: 11px 14px; font-size:0.9rem;
+    border:none; background: transparent;
+    font-family:'Public Sans', sans-serif; color: var(--ink);
+  }
+  .search-input:focus{ outline: none; }
+  .clear-search{
+    border:none; background:transparent; color: var(--ink-soft); font-size:0.85rem;
+    padding: 0 12px; cursor:pointer; height:100%;
+  }
+  .clear-search:hover{ color: var(--gold-soft); }
+  .add-book-btn{
+    background: var(--bg-night); color: var(--paper);
+    border:none; padding: 11px 20px; font-size:0.9rem; cursor:pointer;
+    font-family:'Public Sans', sans-serif;
+  }
+  .add-book-btn:hover{ background: #060B18; }
+
+  .shelf{
+    border-top: 3px solid var(--ink);
+  }
+  .author-group{
+    border-bottom: 1px solid rgba(29,26,21,0.16);
+  }
+  .author-group summary{
+    cursor: pointer; list-style:none; padding: 18px 2px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    font-family:'Fraunces', serif; font-size: 1.08rem; color: var(--ink);
+  }
+  .author-group summary::-webkit-details-marker{ display:none; }
+  .author-group summary .toggle{ color: var(--gold-soft); font-size:1.3rem; line-height:1; flex-shrink:0; }
+  .author-group[open] summary .toggle{ transform: rotate(45deg); display:inline-block; }
+  .author-books{ padding: 2px 2px 22px; display:flex; flex-direction:column; }
+  .book-row{
+    display:flex; align-items:baseline; justify-content:space-between; gap:16px;
+    padding: 10px 0; border-bottom: 1px dashed rgba(29,26,21,0.14);
+  }
+  .book-row:last-child{ border-bottom:none; }
+  .book-title{ font-size:0.95rem; color: var(--ink); flex:1; word-break:break-word; }
+  .book-row .link{
+    font-size:0.82rem; color: var(--gold-soft); text-decoration:none;
+    border-bottom: 1px solid var(--gold-soft); white-space:nowrap; flex-shrink:0;
+  }
+  .book-row .no-link{ font-size:0.8rem; color: var(--ink-soft); flex-shrink:0; }
+  .book-row .remove{
+    background:none; border:none; color: var(--ink-soft); font-size:0.75rem;
+    cursor:pointer; opacity:0.55; flex-shrink:0;
+  }
+  .book-row .remove:hover{ opacity:1; color:#a33; }
+  .empty-note{ padding: 40px 0; text-align:center; color: var(--ink-soft); font-size:0.95rem; }
+  @media (max-width: 520px){
+    .book-row{
+      flex-wrap:wrap; align-items:flex-start;
+    }
+    .book-row .link, .book-row .no-link, .book-row .remove{
+      width:100%; text-align:left;
+    }
+  }
+
+  /* ---------- MODAL ---------- */
+  .modal-backdrop{
+    display:none; position:fixed; inset:0; background: rgba(18,26,46,0.6);
+    z-index: 100; align-items:center; justify-content:center; padding: 20px;
+  }
+  .modal-backdrop.open{ display:flex; }
+  .modal{
+    background: var(--paper); color: var(--ink); max-width: 420px; width:100%;
+    padding: 32px; position:relative;
+  }
+  .modal h3{ font-size:1.3rem; margin-bottom: 20px; color: var(--ink); }
+  .modal label{ display:block; font-size:0.82rem; color: var(--ink-soft); margin-bottom:6px; margin-top:16px; }
+  .modal input{
+    width:100%; padding: 10px 12px; border:1px solid rgba(29,26,21,0.25);
+    background: #fff; font-family:'Public Sans', sans-serif; font-size:0.95rem;
+  }
+  .modal-actions{ display:flex; gap:12px; margin-top:26px; }
+  .modal-actions button{
+    flex:1; padding: 11px; border:none; cursor:pointer; font-size:0.9rem;
+    font-family:'Public Sans', sans-serif;
+  }
+  .modal-actions .save{ background: var(--bg-night); color: var(--paper); }
+  .modal-actions .cancel{ background: transparent; border:1px solid rgba(29,26,21,0.25); color: var(--ink); }
+  .modal-close{ position:absolute; top:14px; right:16px; background:none; border:none; font-size:1.2rem; cursor:pointer; color: var(--ink-soft); }
+
+  /* ---------- BIOGRAFÍAS ---------- */
+  .biografias{ background: var(--paper); color: var(--ink); }
+  .biografias .section-head{ border-bottom-color: rgba(29,26,21,0.15); }
+  .biografias .section-head h2{ color: var(--ink); }
+  .biografias .section-head .desc{ color: var(--ink-soft); }
+  .biografias .section-head .num{ color: var(--gold-soft); }
+  .bio-grid{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap: 0 40px;
+    border-top: 3px solid var(--ink);
+  }
+  .bio-row{
+    display:flex; align-items:center; gap:14px; padding:14px 2px;
+    border-bottom: 1px solid rgba(29,26,21,0.13);
+  }
+  .bio-avatar{
+    width:36px; height:36px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-size:0.78rem; font-weight:500;
+    background: radial-gradient(circle at 32% 30%, #fdf1cf, var(--gold) 78%);
+    color: var(--ink);
+  }
+  .bio-name{ flex:1; font-size:0.94rem; color: var(--ink); }
+  .bio-row a{
+    font-size:0.82rem; color: var(--gold-soft); text-decoration:none;
+    border-bottom: 1px solid var(--gold-soft); white-space:nowrap; flex-shrink:0;
+  }
+  @media (max-width: 700px){
+    .bio-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- ORACIONES ---------- */
+  .oraciones{ background: var(--paper); color: var(--ink); position:relative; overflow:hidden; }
+  .oraciones .section-head{ border-bottom-color: rgba(29,26,21,0.15); }
+  .oraciones .section-head h2{ color: var(--ink); }
+  .oraciones .section-head .desc{ color: var(--ink-soft); }
+  .oraciones .section-head .num{ color: var(--gold-soft); }
+  .oracion-item{
+    border-bottom: 1px solid rgba(29,26,21,0.14);
+  }
+  .oracion-item summary{
+    cursor: pointer; list-style:none; padding: 18px 2px;
+    display:flex; align-items:center; justify-content:space-between; gap: 16px;
+    font-family:'Fraunces', serif; font-size: 1.05rem; color: var(--ink);
+    text-shadow: 0 0 10px rgba(217,180,106,0.12);
+  }
+  .oracion-item summary::-webkit-details-marker{ display:none; }
+  .oracion-item summary .toggle{ color: var(--gold-soft); font-size: 1.3rem; flex-shrink:0; }
+  .oracion-item[open] summary .toggle{ transform: rotate(45deg); display:inline-block; }
+  .oracion-text{
+    padding: 0 2px 24px; color: var(--ink-soft); font-size: 0.96rem; max-width: 66ch;
+    white-space: pre-line;
+  }
+
+  /* ---------- ESPÍRITU DE LA VERDAD ---------- */
+  .espiritu-verdad{ background: var(--bg-night-soft); position:relative; overflow:hidden; }
+  .ev-block{ margin-bottom: 52px; }
+  .ev-block:last-child{ margin-bottom: 0; }
+  .ev-block h3{
+    font-size: 1.3rem; color: var(--paper); margin-bottom: 16px;
+    display:flex; align-items:center; gap:10px;
+    text-shadow: 0 0 12px rgba(217,180,106,0.12);
+  }
+  .ev-block > p{ color: var(--paper-dim); font-size: 0.97rem; max-width: 66ch; margin: 0 0 14px; }
+
+  .bubble{
+    position:relative;
+    background: linear-gradient(180deg, rgba(245,239,225,1), rgba(233,222,197,1));
+    color: var(--ink);
+    padding: 20px 24px;
+    border-radius: 3px;
+    font-family:'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.02rem;
+    max-width: 58ch;
+    margin: 22px 0 32px;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+  }
+  .bubble::after{
+    content:''; position:absolute; left:34px; bottom:-14px;
+    border-width: 14px 12px 0; border-style:solid;
+    border-color: var(--paper) transparent transparent;
+  }
+
+  .icon-grid{
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px; margin-top: 24px;
+  }
+  .icon-card{
+    background: linear-gradient(180deg, rgba(33,29,73,0.96), rgba(23,26,54,0.96));
+    border: 1px solid var(--line);
+    padding: 22px 20px;
+    box-shadow: inset 0 0 0 1px rgba(229,199,122,0.06);
+  }
+  .icon-card .icon{ font-size: 1.5rem; display:block; margin-bottom: 10px; }
+  .icon-card h4{ font-family:'Fraunces', serif; font-size: 1rem; color: var(--paper); margin: 0 0 8px; }
+  .icon-card p{ color: var(--paper-dim); font-size: 0.9rem; margin: 0; }
+  .icon-card .quote{ display:block; margin-top: 8px; font-style: italic; color: var(--gold-soft); font-size: 0.87rem; }
+
+  .not-list{ list-style:none; padding:0; margin: 20px 0 0; display:grid; gap: 10px; }
+  .not-list li{
+    display:flex; gap: 12px; align-items:baseline;
+    color: var(--paper-dim); font-size: 0.95rem;
+  }
+  .not-list li::before{
+    content:'✕'; color: #C9846A; flex-shrink:0; font-size: 0.8rem; margin-top: 3px;
+  }
+
+  .ev-reflexion{
+    text-align:center; max-width: 62ch; margin: 0 auto;
+    padding: 8px 0 4px;
+  }
+  .ev-reflexion .emoji{ font-size: 1.8rem; display:block; margin-bottom: 14px; }
+  .ev-reflexion p{
+    font-family:'Fraunces', serif; font-style: italic; color: var(--paper);
+    font-size: 1.05rem; line-height: 1.7; margin: 0 0 18px;
+  }
+
+  .oracion-destacada{
+    background: linear-gradient(180deg, rgba(33,29,73,0.96), rgba(23,26,54,0.96));
+    border: 1px solid var(--line);
+    padding: 32px 30px; text-align:center;
+    box-shadow: inset 0 0 0 1px rgba(229,199,122,0.05);
+  }
+  .oracion-destacada .emoji{ font-size: 1.6rem; display:block; margin-bottom: 14px; }
+  .oracion-destacada p{
+    color: var(--paper-dim); font-size: 0.98rem; max-width: 56ch;
+    margin: 0 auto 14px; line-height: 1.75;
+  }
+  .oracion-destacada p:last-of-type{ margin-bottom: 0; color: var(--paper); font-style: italic; }
+
+  .icon-card ul{ list-style:none; padding:0; margin: 10px 0 0; }
+  .icon-card ul li{ font-size: 0.88rem; color: var(--paper-dim); padding: 3px 0; }
+  .icon-card ul li::before{ content:'· '; color: var(--gold-soft); }
+  .icon-card p.antidote{ color: var(--gold-soft); font-style: italic; margin-top: 10px; }
+
+  .check-list{ list-style:none; padding:0; margin: 20px 0 0; display:grid; gap: 10px; }
+  .check-list li{
+    display:flex; gap: 12px; align-items:baseline;
+    color: var(--paper-dim); font-size: 0.95rem;
+  }
+  .check-list li::before{
+    content:'✓'; color: #8FBF9F; flex-shrink:0; font-size: 0.85rem; margin-top: 3px;
+  }
+
+  .mito-item{ border-bottom: 1px solid var(--line); padding: 22px 2px 26px; }
+  .mito-item .label{ font-family:'Fraunces', serif; font-size: 1.05rem; color: var(--paper); display:block; margin-bottom: 14px; text-shadow: 0 0 10px rgba(217,180,106,0.1); }
+  .mito-item .label .tag{ color: #C9846A; font-weight:600; font-family:'Public Sans', sans-serif; font-size: 0.78rem; margin-right: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .mito-body{ padding: 0; max-width: 66ch; }
+  .mito-body .realidad-tag{
+    display:inline-block; color:#8FBF9F; font-weight:600; font-size: 0.82rem;
+    letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 10px;
+  }
+  .mito-body p{ color: var(--paper-dim); font-size: 0.95rem; margin: 0 0 12px; }
+  .mito-body ul{ list-style:none; padding:0; margin: 10px 0 14px; }
+  .mito-body ul li{ color: var(--paper-dim); font-size: 0.92rem; padding: 2px 0; }
+  .mito-body ul li::before{ content:'· '; color: var(--gold-soft); }
+  .mito-subhead{
+    font-size: 1.15rem; color: var(--gold-soft); font-style: italic;
+    font-family:'Fraunces', serif; margin: 44px 0 8px;
+    letter-spacing: 0.04em;
+  }
+  .mito-subhead:first-of-type{ margin-top: 8px; }
+
+  /* ---------- REFLEXIÓN ---------- */
+  .reflexion{ background: var(--bg-night-soft); }
+  .reflexion .section-head{ border-bottom-color: var(--line); }
+  .theme-group{
+    margin-bottom: 34px;
+  }
+  .theme-group h3{
+    font-size: 1.1rem; color: var(--gold-soft); font-style: italic;
+    margin-bottom: 16px; font-family:'Fraunces', serif; font-weight: 500;
+  }
+  .question-item{
+    border-bottom: 1px solid var(--line);
+  }
+  .question-item summary{
+    cursor: pointer; list-style:none; padding: 16px 2px;
+    display:flex; align-items:baseline; justify-content:space-between; gap: 16px;
+    color: var(--paper); font-size: 1rem;
+  }
+  .question-item summary::-webkit-details-marker{ display:none; }
+  .question-item summary .toggle{ color: var(--gold-soft); font-size: 1.2rem; flex-shrink:0; }
+  .question-item .answer{
+    padding: 0 2px 22px; color: var(--paper-dim); font-size: 0.94rem; max-width: 62ch;
+  }
+  .care-panel{
+    margin-top: 8px; margin-bottom: 40px;
+    border: 1px solid var(--line); padding: 28px 26px;
+    background: var(--bg-night-softer);
+  }
+  .care-panel h3{
+    font-size: 1.25rem; color: var(--paper); margin-bottom: 16px;
+  }
+  .care-panel p{ color: var(--paper-dim); font-size: 0.97rem; max-width: 68ch; margin: 0 0 14px; }
+  .care-panel p:last-of-type{ margin-bottom: 0; }
+  .care-resource{
+    margin-top: 20px; padding: 16px 18px; border-left: 3px solid var(--gold);
+    background: rgba(216,165,74,0.08);
+  }
+  .care-resource strong{ color: var(--paper); }
+  .care-resource span{ display:block; margin-top:4px; color: var(--paper-dim); font-size: 0.9rem; }
+
+  footer{
+    padding: 48px 28px; text-align:center; font-size:0.85rem;
+    color: var(--paper-dim); border-top: 1px solid var(--line);
+  }
+  .floating-top{
+    position: fixed; right: 22px; bottom: 22px; z-index: 40;
+    display:none; align-items:center; justify-content:center;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: rgba(216,165,74,0.95); color: var(--ink); border:none;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.26); cursor:pointer;
+    text-decoration:none; font-size: 1.1rem;
+  }
+  .floating-top.visible{ display:flex; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-row">
+    <a class="brand" href="#top"><span class="dot"></span>Biblioteca Sendero de Luz</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="links" id="mainNav">
+      <a href="#personajes">Personajes</a>
+      <a href="#biblioteca">Biblioteca</a>
+      <a href="#biografias">Biografías</a>
+      <a href="#reflexion">Reflexión</a>
+      <a href="#oraciones">Oraciones</a>
+      <a href="#espiritu-verdad">Espíritu de la Verdad</a>
+      <a href="#autodefensa">Autodefensa</a>
+      <a href="#mito-realidad">Mito o Realidad</a>
+    </nav>
+  </div>
+</header>
+
+<div id="top" class="hero">
+  <svg class="hero-path" viewBox="0 0 1120 480" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="glow" cx="50%" cy="30%" r="60%">
+        <stop offset="0%" stop-color="#3A3620" stop-opacity="0.9"/>
+        <stop offset="45%" stop-color="#1B2540" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="#121A2E" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="pathLine" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0%" stop-color="#D8A54A" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#D8A54A" stop-opacity="0.55"/>
+      </linearGradient>
+    </defs>
+    <rect width="1120" height="480" fill="url(#glow)"/>
+    <path d="M -50 480 L 460 190 L 660 190 L 1170 480 Z" fill="url(#pathLine)"/>
+    <circle cx="560" cy="150" r="3" fill="#F3ECD9" opacity="0.8"/>
+    <circle cx="420" cy="230" r="2" fill="#F3ECD9" opacity="0.5"/>
+    <circle cx="700" cy="210" r="2" fill="#F3ECD9" opacity="0.5"/>
+    <circle cx="620" cy="90" r="2.4" fill="#F3ECD9" opacity="0.7"/>
+    <circle cx="500" cy="80" r="1.6" fill="#F3ECD9" opacity="0.4"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Estudio, práctica y vivencia espírita</div>
+    <h1>Un camino hacia la luz interior</h1>
+    <p class="lead">En cada paso de la existencia, el alma aprende, se purifica y se eleva. La vida no es un accidente del destino, sino una escuela de conciencia en la que cada experiencia nos devuelve a la esencia más profunda de lo que somos: seres en evolución, llamados a crecer en amor, verdad y sabiduría.</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="#personajes">Conocer a los codificadores</a>
+      <a class="btn btn-ghost" href="#biblioteca">Ir a la biblioteca</a>
+    </div>
+  </div>
+</div>
+
+<section class="bienvenida">
+  <div class="wrap">
+    <div class="ornament">✦ ✦ ✦</div>
+    <p>Comprender que somos espíritus en constante aprendizaje nos invita a mirar la existencia con más serenidad, a aceptar los desafíos con mayor fortaleza y a entender que el amor, la caridad y el bien son los verdaderos caminos hacia la evolución espiritual.</p>
+    <p>Quienes amamos y hoy no vemos físicamente no desaparecen; continúan su camino, así como nosotros continuamos el nuestro. Los lazos creados desde el corazón trascienden el tiempo, la distancia e incluso la muerte, porque el amor es una fuerza que pertenece al alma.</p>
+    <p>La verdadera transformación comienza cuando dejamos de preguntarnos "¿por qué me ocurre esto?" y empezamos a preguntarnos "¿qué puedo aprender de esto?". Allí nace la paz, la comprensión y la certeza de que cada paso, por pequeño que parezca, nos acerca a una versión más consciente, amorosa y elevada de nosotros mismos.</p>
+    <p>Vivir es evolucionar. Amar es crecer. Servir a los demás es una de las formas más nobles de acercarnos a nuestra mejor esencia y de recordar que el más alto camino no es el del orgullo, sino el de la luz interior.</p>
+  </div>
+</section>
+
+<section class="personajes" id="personajes">
+  <svg class="section-motif" viewBox="0 0 300 200" style="top:-20px; right:-30px; width:340px; height:auto;" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#F3ECD9" stroke-width="1.2">
+      <path d="M150 100 C120 60, 60 50, 20 70 C60 80, 90 100, 110 130 C90 110, 60 105, 30 115 C70 115, 100 130, 120 150"/>
+      <path d="M150 100 C180 60, 240 50, 280 70 C240 80, 210 100, 190 130 C210 110, 240 105, 270 115 C230 115, 200 130, 180 150"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">I.</span>
+      <h2>Personajes importantes</h2>
+      <p class="desc">Figuras que dieron forma y difundieron la Doctrina Espírita.</p>
+    </div>
+
+    <div class="figura">
+      <div class="medallion kardec" style="overflow:hidden; padding:0;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Photo_Kardec.jpg" alt="Retrato de Allan Kardec" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'AK'}));">
+      </div>
+      <div>
+        <h3>Allan Kardec</h3>
+        <div class="rol">Codificador de la Doctrina Espírita (1804–1869)</div>
+        <p class="bio">Pseudónimo de Hippolyte Léon Denizard Rivail, pedagogo francés que sistematizó las comunicaciones y fenómenos mediúmnicos observados en su época en un cuerpo doctrinario coherente, apoyado en la filosofía, la ciencia y la moral cristiana. Es considerado el fundador y sistematizador del Espiritismo.</p>
+        <div class="obras">
+          <div class="obras-label">Obras principales</div>
+          <ul>
+            <li>El Libro de los Espíritus (1857)</li>
+            <li>El Libro de los Médiums (1861)</li>
+            <li>El Evangelio según el Espiritismo (1864)</li>
+            <li>El Cielo y el Infierno (1865)</li>
+            <li>La Génesis (1868)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="figura">
+      <div class="medallion xavier" style="overflow:hidden; padding:0;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Statue_de_Chico_Xavier%2C_ville_de_Pedro_Leopoldo.jpg" alt="Busto de Chico Xavier en Pedro Leopoldo" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'CX'}));">
+      </div>
+      <div>
+        <h3>Chico Xavier</h3>
+        <div class="rol">Médium psicógrafo brasileño (1910–2002)</div>
+        <p class="bio">Francisco Cândido Xavier dedicó su vida a la psicografía, atribuyendo cientos de obras a espíritus comunicantes. Su producción y su ejemplo de caridad convirtieron al Espiritismo en un movimiento popular de gran alcance en Brasil y en el mundo.</p>
+        <div class="obras">
+          <div class="obras-label">Obras principales</div>
+          <ul>
+            <li>Nuestro Hogar (por André Luiz)</li>
+            <li>Los Mensajeros (por André Luiz)</li>
+            <li>Missionarios de la Luz (por André Luiz)</li>
+            <li>Parnaso de Ultratumba</li>
+            <li>¡Ave, Cristo!</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="figura">
+      <div class="medallion ramatis">
+        <svg viewBox="0 0 100 100" style="width:68%; height:68%;" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#F3ECD9" stroke-width="2.5" stroke-linecap="round" opacity="0.8">
+            <line x1="50" y1="4" x2="50" y2="17"/>
+            <line x1="50" y1="83" x2="50" y2="96"/>
+            <line x1="4" y1="50" x2="17" y2="50"/>
+            <line x1="83" y1="50" x2="96" y2="50"/>
+            <line x1="17" y1="17" x2="26" y2="26"/>
+            <line x1="74" y1="74" x2="83" y2="83"/>
+            <line x1="83" y1="17" x2="74" y2="26"/>
+            <line x1="17" y1="83" x2="26" y2="74"/>
+          </g>
+          <path d="M50 28 C39 44, 39 60, 50 74 C61 60, 61 44, 50 28 Z" fill="#F3ECD9" opacity="0.95"/>
+        </svg>
+      </div>
+      <div>
+        <h3>Ramatis</h3>
+        <div class="rol">Entidad espiritual comunicante</div>
+        <p class="bio">Nombre de un espíritu que se identifica como un antiguo sacerdote e iniciado, cuyos mensajes fueron psicografiados por diferentes médiums —entre ellos Hercílio Maes—, abordando temas de evolución espiritual, cosmología y vida después de la muerte desde una perspectiva esotérica dentro del espiritismo.</p>
+        <div class="obras">
+          <div class="obras-label">Obras principales</div>
+          <ul>
+            <li>Mensajes del Astral</li>
+            <li>Elucidaciones del Más Allá</li>
+            <li>Sexo y Destino</li>
+            <li>El Espiritismo a la Luz del Cristianismo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="biblioteca" id="biblioteca">
+  <svg class="section-motif" viewBox="0 0 300 200" style="bottom:-30px; left:-20px; width:300px; height:auto; opacity:0.06;" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#1D1A17" stroke-width="1.3">
+      <path d="M40 60 C80 40, 120 40, 150 55 L150 150 C120 135, 80 135, 40 150 Z"/>
+      <path d="M260 60 C220 40, 180 40, 150 55 L150 150 C180 135, 220 135, 260 150 Z"/>
+      <line x1="60" y1="70" x2="130" y2="62"/>
+      <line x1="60" y1="90" x2="130" y2="82"/>
+      <line x1="60" y1="110" x2="130" y2="102"/>
+      <line x1="240" y1="70" x2="170" y2="62"/>
+      <line x1="240" y1="90" x2="170" y2="82"/>
+      <line x1="240" y1="110" x2="170" y2="102"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">II.</span>
+      <h2>Biblioteca</h2>
+      <p class="desc">Organizada por autor, con acceso directo a cada libro. Podés sumar otros títulos manualmente.</p>
+    </div>
+
+    <div class="shelf-toolbar">
+      <div class="search-wrap">
+        <input type="text" id="searchBooks" class="search-input" placeholder="Buscar por título o autor…">
+        <button type="button" class="clear-search" id="clearSearchBtn" aria-label="Limpiar búsqueda">Limpiar</button>
+      </div>
+      <span class="count" id="bookCount">Cargando estante…</span>
+      <button class="add-book-btn" id="openModalBtn" title="Se guarda solo en este navegador">+ Agregar libro</button>
+    </div>
+
+    <div class="shelf" id="shelf"></div>
+  </div>
+</section>
+
+<section class="biografias" id="biografias">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">III.</span>
+      <h2>Biografías</h2>
+      <p class="desc">Codificadores, médiums, científicos y escritores vinculados a la Doctrina Espírita.</p>
+    </div>
+    <div class="bio-grid">
+      <div class="bio-row"><span class="bio-avatar">AK</span><span class="bio-name">Allan Kardec</span><a href="https://drive.google.com/file/d/1-1WQlMHvb_GUN_qy9MCsZ777CnEknZ-0/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">AS</span><span class="bio-name">Amalia Domingo Soler</span><a href="https://drive.google.com/file/d/1-2UyqhDYmw5nbjoQzi0vdcK5ACgexhRW/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">AP</span><span class="bio-name">Ana Prado</span><a href="https://drive.google.com/file/d/1-KiV6guoj79230l5i2EZ_aIPq2OeG6E7/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">AU</span><span class="bio-name">Antonio Ugarte</span><a href="https://drive.google.com/file/d/1-BLSlqj6pTdWSkXVnlmiBNxOcs2TNL0U/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">AS</span><span class="bio-name">Aurora de los Santos</span><a href="https://drive.google.com/file/d/1-LnBcMlcB4VsnqTLN7Jqn_BcQxL8HVFw/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">CS</span><span class="bio-name">Cairbar Schutel</span><a href="https://drive.google.com/file/d/1-PElBOniYdiUYeDcJrllyX57SJ__9fmW/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">CF</span><span class="bio-name">Camille Flammarion</span><a href="https://drive.google.com/file/d/1-QSd-yhXSewCpZvvK7WgniVHeqiExW9i/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">CF</span><span class="bio-name">Carlos Norberto Fontinovo</span><a href="https://drive.google.com/file/d/1-sLlnTwkGYA57rLNpRaw_gnl1oT54wT2/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">CR</span><span class="bio-name">Cecília Rocha</span><a href="https://drive.google.com/file/d/1-W_7woGxfo8_xUTRiwTYiwKhZ-_qERhv/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">CX</span><span class="bio-name">Chico Xavier</span><a href="https://drive.google.com/file/d/1-eOGF7121mAhPeAFuYc9qxsw_jjOJAk7/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">CM</span><span class="bio-name">Colombia Montoya De Martinez</span><a href="https://drive.google.com/file/d/1-go_PhSqu5mWxUb5JW2RirM9BJQp3tFj/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">CD</span><span class="bio-name">Conan Doyle</span><a href="https://drive.google.com/file/d/1-rOnPDQXKX8Z5dgmGK-6wHJyDiJUw0Lp/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">CM</span><span class="bio-name">Cosme Mariño</span><a href="https://drive.google.com/file/d/1-mA43-RS9zSidJpu3zA-90ToWhLn6qY9/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">DH</span><span class="bio-name">Daniel Douglas Home</span><a href="https://drive.google.com/file/d/1-ql12bcTSnamshZGQUVrCxMlgJ6cZiuj/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">EP</span><span class="bio-name">Enrique Pestalozzi</span><a href="https://drive.google.com/file/d/10ee6cc5WO7Ewd4v-QjXkauqeFH5KXIOM/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">FL</span><span class="bio-name">Francisco Peixoto Lins</span><a href="https://drive.google.com/file/d/10Y4_RF0Oz6ZT-tnv-S7SepKMpjsXJwO1/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">HM</span><span class="bio-name">Humberto Mariotti</span><a href="https://drive.google.com/file/d/1-vmU5cmRr-zfLpa0frLrkH2cnKtEJ7Vc/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">JG</span><span class="bio-name">Jaime Galté</span><a href="https://drive.google.com/file/d/106Z_Vv8b_ir3lKVSzS1DcVq7RF5789rx/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">JP</span><span class="bio-name">José Herculano Pires</span><a href="https://drive.google.com/file/d/107Fuw9RWwjbpgioFOVSugIsnofz3XfnP/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">JC</span><span class="bio-name">José María Fernández Colavida</span><a href="https://drive.google.com/file/d/109sD7e15ufWmHfytTHJd6VVlUsntMlN8/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">JS</span><span class="bio-name">José Sáez</span><a href="https://drive.google.com/file/d/10m9nuPFvmiU_FpeTc3ublCRo_IjQXp5h/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">JD</span><span class="bio-name">Juan Antonio Durante</span><a href="https://drive.google.com/file/d/10DfTvQodFuKQnU1Uss8mO4NanqMhjKVi/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">JA</span><span class="bio-name">Juana de Angelis</span><a href="https://drive.google.com/file/d/10LGiuEaC2SNpkhEtwGO_WwurNzwPqOFP/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">LD</span><span class="bio-name">León Denis</span><a href="https://drive.google.com/file/d/10Oj1eRMh1Ay8LDd7odQPIWgk8sjOL-vI/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">MK</span><span class="bio-name">Madame Kardec</span><a href="https://drive.google.com/file/d/10PGxAo7H_jyWN5RFnrmj2DUZf18e9DZP/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">MP</span><span class="bio-name">Manuel Porteiro</span><a href="https://drive.google.com/file/d/10R7zrzReCNH90d-3fIQrl044amzY1Oax/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">PS</span><span class="bio-name">Pancho Sierra</span><a href="https://drive.google.com/file/d/10Xtw_TtofvYc9ySeKLoESZyMSgtOQBG2/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">VH</span><span class="bio-name">Víctor Hugo</span><a href="https://drive.google.com/file/d/10gckLoayCBl5qtDh8S9n-fwF8hIyVH7m/view" target="_blank" rel="noopener">Leer</a></div>
+      <div class="bio-row"><span class="bio-avatar">WC</span><span class="bio-name">Willian Crookes</span><a href="https://drive.google.com/file/d/10hptVTVYGgzVBc3wjcfLtxOB4ZiBrPd4/view" target="_blank" rel="noopener">Leer</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="reflexion" id="reflexion">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">IV.</span>
+      <h2>Preguntas para la reflexión</h2>
+      <p class="desc">Para releer antes de dormir, en grupo de estudio, o cuando el día lo pida.</p>
+    </div>
+
+    <div class="theme-group">
+      <h3>Sobre el sentido de la vida</h3>
+      <details class="question-item">
+        <summary><span>¿Qué propósito le estoy dando a mi existencia actual?</span><span class="toggle">+</span></summary>
+        <div class="answer">No hace falta una respuesta grandiosa. Alcanza con notar en qué se te va el tiempo y la energía, y si eso se parece al tipo de persona que querés ser. La Doctrina Espírita enseña que cada existencia es una etapa más en un camino de progreso continuo: no venimos a esta vida por azar, sino a superar imperfecciones puntuales y a sumar los conocimientos y virtudes que todavía nos faltan. Desde esa mirada, "el sentido de la vida" no es una meta abstracta sino el conjunto concreto de pruebas y expiaciones que elegimos, antes de encarnar, para acercarnos un poco más a la perfección moral.</div>
+      </details>
+      <details class="question-item">
+        <summary><span>¿Qué aprendizaje me está pidiendo esta etapa de mi vida?</span><span class="toggle">+</span></summary>
+        <div class="answer">Las dificultades repetidas suelen señalar algo puntual por trabajar. Pensar en qué situación se repite puede ser una pista más honesta que buscar una causa externa. Kardec explica que las pruebas de la vida actual están directamente relacionadas con faltas de existencias anteriores o con imperfecciones que persisten en el carácter, y que los espíritus superiores nos las presentan como oportunidad de reparación, no como castigo. Mirar una dificultad recurrente como una "asignatura pendiente" del espíritu, y no como mala suerte, es coherente con esa idea central de la doctrina: todo sufrimiento tiene una causa y una función educativa.</div>
+      </details>
+    </div>
+
+    <div class="theme-group">
+      <h3>Sobre la caridad y el amor al prójimo</h3>
+      <details class="question-item">
+        <summary><span>¿Practiqué la caridad hoy, no solo con actos sino con palabras y pensamientos?</span><span class="toggle">+</span></summary>
+        <div class="answer">La caridad también se ejerce callando un comentario hiriente, o sosteniendo paciencia con quien nos cuesta. No solo en la ayuda visible. El Evangelio según el Espiritismo señala a la caridad y al amor al prójimo como la síntesis de toda la ley moral, por encima incluso de las prácticas religiosas externas. Kardec la describe en un sentido amplio, que incluye la benevolencia hacia todos, la indulgencia ante las imperfecciones ajenas y el perdón de las ofensas; es decir, una disposición interior sostenida, no solo un gesto puntual de ayuda material.</div>
+      </details>
+      <details class="question-item">
+        <summary><span>¿Cómo trato a las personas que piensan distinto a mí?</span><span class="toggle">+</span></summary>
+        <div class="answer">Vale la pena revisar si el respeto que pedimos para nuestras propias ideas se lo damos también a las ajenas. La doctrina insiste en que ningún espíritu, por más elevado que se sienta, tiene el monopolio de la verdad, y que el progreso moral se mide por la tolerancia y la ausencia de orgullo, no por tener razón. Juzgar con dureza a quien piensa distinto suele delatar, según esta enseñanza, más apego al propio ego que amor genuino a la verdad.</div>
+      </details>
+    </div>
+
+    <div class="theme-group">
+      <h3>Sobre el perdón y los vínculos</h3>
+      <details class="question-item">
+        <summary><span>¿A quién necesito perdonar, y qué es lo que en el fondo me lo impide?</span><span class="toggle">+</span></summary>
+        <div class="answer">A veces lo que sostiene un resentimiento no es el daño en sí, sino el miedo a que perdonar signifique que no importó. Nombrar ese miedo suele aflojarlo. Para el Espiritismo, negarse a perdonar mantiene atado al propio espíritu a la ofensa recibida, y retrasa tanto la paz propia como la del que ofendió, ya que ambos siguen ligados por esa deuda moral hasta saldarla. Perdonar no equivale a negar el daño, sino a soltar la cadena que ese daño creó, confiando en que la justicia divina —no la propia— se encargará de restablecer el equilibrio.</div>
+      </details>
+      <details class="question-item">
+        <summary><span>¿Qué vínculos de mi pasado reconozco en las personas que hoy me rodean?</span><span class="toggle">+</span></summary>
+        <div class="answer">No hace falta certeza sobre vidas anteriores para notar que ciertos vínculos se sienten "antiguos" desde el primer momento, y preguntarse qué tienen para enseñarse mutuamente. La doctrina sostiene que los espíritus afines se reencuentran encarnación tras encarnación, muchas veces para resolver conflictos pendientes o para acompañarse en un mismo proceso de aprendizaje. Bajo esa luz, una relación difícil puede entenderse no como una casualidad desafortunada, sino como un reencuentro con una tarea moral que quedó inconclusa.</div>
+      </details>
+    </div>
+
+    <div class="theme-group">
+      <h3>Sobre el libre albedrío y la responsabilidad</h3>
+      <details class="question-item">
+        <summary><span>¿Estoy usando mi libertad para el bien, o para justificar lo que me conviene?</span><span class="toggle">+</span></summary>
+        <div class="answer">Una buena señal es preguntarse si la decisión sería igual de defendible explicada en voz alta a alguien que queremos y respetamos. Kardec sostiene que el libre albedrío es total: los espíritus somos plenamente responsables de nuestros actos, y ninguna influencia externa —ni siquiera de otros espíritus— nos exime de esa responsabilidad si cedemos por debilidad propia. La libertad, en la doctrina, no es un permiso para hacer lo que se quiera, sino la condición misma que hace posible el mérito o la falta.</div>
+      </details>
+      <details class="question-item">
+        <summary><span>¿De qué manera mis actos de hoy están sembrando mi mañana?</span><span class="toggle">+</span></summary>
+        <div class="answer">No como amenaza sino como brújula: lo que sembramos con constancia, tarde o temprano da forma a cómo vivimos y a quién nos rodea. La ley de causa y efecto es, para el Espiritismo, tan universal como cualquier ley física: cada acto, bueno o malo, produce consecuencias proporcionales que tarde o temprano recaen sobre quien lo generó, en esta vida o en otra. Comprenderlo despoja a la idea de "karma" de cualquier fatalismo: no se trata de castigo externo, sino de una consecuencia natural que el propio espíritu puede empezar a modificar desde ahora con actos distintos.</div>
+      </details>
+    </div>
+
+    <div class="theme-group">
+      <h3>Sobre la fe y la relación con lo espiritual</h3>
+      <details class="question-item">
+        <summary><span>¿Mi fe me sostiene en los momentos difíciles, o solo la recuerdo en la comodidad?</span><span class="toggle">+</span></summary>
+        <div class="answer">Una fe que solo aparece cuando todo va bien es más una costumbre que un sostén. Vale la pena notar si se activa también cuando hace falta. Kardec distingue la fe ciega, que se sostiene sin examen y por eso es frágil ante la primera duda, de la fe razonada, que se apoya en la reflexión y en la comprensión de las leyes divinas y por eso resiste las pruebas de la vida. Una fe así entendida no exige dejar de pensar, sino todo lo contrario: se fortalece cuanto más se la piensa.</div>
+      </details>
+      <details class="question-item">
+        <summary><span>¿Qué significa concretamente, en mi día a día, "amar al prójimo"?</span><span class="toggle">+</span></summary>
+        <div class="answer">Es fácil que sea una frase abstracta. Intentar traducirla a un acto concreto de esta semana la vuelve real. El Evangelio según el Espiritismo insiste en que esta máxima no se cumple con buenas intenciones declaradas, sino con hechos: ayudar sin esperar reconocimiento, perdonar sin condiciones y tratar a cada persona como quisiéramos ser tratados, incluidas aquellas que menos nos caen bien. Para la doctrina, el grado de progreso moral de un espíritu se mide, precisamente, por cuánto de esto logra sostener en la práctica cotidiana y no solo en la teoría.</div>
+      </details>
+    </div>
+
+    <div class="theme-group">
+      <h3>Sobre el suicidio</h3>
+      <details class="question-item">
+        <summary><span>¿Qué enseña la Doctrina Espírita sobre el suicidio?</span><span class="toggle">+</span></summary>
+        <div class="answer">El Evangelio según el Espiritismo dedica un capítulo entero a este tema, y lo hace sin condena hacia quien sufre: para la doctrina, cada existencia trae consigo pruebas que el propio espíritu eligió atravesar como oportunidad de progreso. Interrumpir la vida no elimina esa prueba pendiente ni la causa que la originó; según esta enseñanza, el espíritu sigue atado a ese mismo dolor después de la muerte, sin el cuerpo que antes lo protegía, y deberá retomar la misma dificultad más adelante para poder resolverla realmente.</div>
+      </details>
+      <details class="question-item">
+        <summary><span>¿Por qué es tan importante pedir ayuda a tiempo?</span><span class="toggle">+</span></summary>
+        <div class="answer">La doctrina no mira este dolor con juicio sino con enorme compasión, distinguiendo siempre entre quien actúa consciente y quien está atravesado por una angustia o una enfermedad que lo desborda. Y por eso mismo insiste en algo muy simple: si terminar con la vida no termina con el sufrimiento, lo que sí puede aliviarlo es pedir ayuda a tiempo, mientras todavía hay margen para trabajar la causa del dolor, en lugar de cargar con ella sin ese cuerpo y esa oportunidad.</div>
+      </details>
+    </div>
+
+  </div>
+</section>
+
+<section class="oraciones" id="oraciones">
+  <svg class="section-motif" viewBox="0 0 120 220" style="bottom:-20px; right:-10px; width:150px; height:auto; opacity:0.06;" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#1D1A17" stroke-width="1.3">
+      <path d="M60 30 C50 50, 45 65, 60 80 C75 65, 70 50, 60 30 Z"/>
+      <rect x="45" y="80" width="30" height="90" rx="3"/>
+      <line x1="45" y1="100" x2="75" y2="100"/>
+      <line x1="45" y1="130" x2="75" y2="130"/>
+      <line x1="30" y1="170" x2="90" y2="170"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">V.</span>
+      <h2>Oraciones</h2>
+      <p class="desc">Para acompañar distintos momentos del día y del camino espiritual.</p>
+    </div>
+
+    <details class="oracion-item">
+      <summary><span>Oración de Protección y Entrega</span><span class="toggle">+</span></summary>
+      <div class="oracion-text">Dios de infinita bondad, me presento ante Ti con humildad y gratitud. Te pido que envuelvas mi vida con tu luz y tu amor, iluminando mis pensamientos para que sean puros, mis palabras para que sean constructivas y mis acciones para que sirvan al bien.
+
+Permite que los buenos espíritus me acompañen e inspiren en cada decisión que deba tomar. Aleja de mi corazón el miedo, la desesperanza y toda influencia que me aparte de los caminos de la paz.
+
+Que en los momentos de duda recuerde que nunca estoy solo y que tu amor sostiene cada paso de mi existencia. Concédeme serenidad para aceptar las pruebas, fortaleza para enfrentarlas y sabiduría para aprender de ellas. Que así sea.</div>
+    </details>
+
+    <details class="oracion-item">
+      <summary><span>Oración para la Familia</span><span class="toggle">+</span></summary>
+      <div class="oracion-text">Padre Celestial, hoy elevo mi pensamiento hacia Ti para pedir protección y bendiciones para mi familia.
+
+Que nuestro hogar esté rodeado de armonía, comprensión y respeto. Ayúdanos a superar nuestras diferencias con amor y paciencia, recordando que cada uno de nosotros está recorriendo su propio camino de aprendizaje.
+
+Protege a quienes amamos, estén cerca o lejos. Brinda salud a sus cuerpos, paz a sus corazones y claridad a sus pensamientos.
+
+Que podamos ser refugio unos para otros y que nunca falte entre nosotros el perdón, la gratitud y la capacidad de tender una mano cuando alguien lo necesite.</div>
+    </details>
+
+    <details class="oracion-item">
+      <summary><span>Oración para Momentos Difíciles</span><span class="toggle">+</span></summary>
+      <div class="oracion-text">Señor, cuando las dificultades parezcan mayores que mis fuerzas, ayúdame a recordar que toda prueba tiene un propósito y que ningún sufrimiento es inútil ante tus ojos.
+
+Dame la capacidad de comprender lo que debo aprender de cada situación y la fortaleza necesaria para seguir adelante aun cuando no encuentre respuestas inmediatas.
+
+Que mi fe no dependa de las circunstancias, sino de la certeza de que tu amor me acompaña en todo momento.
+
+Permite que de cada experiencia surja una versión más fuerte, más consciente y más amorosa de mí mismo.</div>
+    </details>
+
+    <details class="oracion-item">
+      <summary><span>Oración a los Buenos Espíritus</span><span class="toggle">+</span></summary>
+      <div class="oracion-text">Espíritus de luz y de bien, amigos invisibles que trabajan en nombre de Dios, les agradezco por la asistencia y las inspiraciones que recibo cada día.
+
+Ayúdenme a reconocer mis errores sin temor, a corregir mis imperfecciones con humildad y a cultivar la paciencia y la caridad en cada una de mis relaciones.
+
+Cuando mis pensamientos se desvíen hacia la ira, el orgullo o el desaliento, inspírenme sentimientos más elevados.
+
+Que pueda convertirme en una persona útil para quienes me rodean y que mis acciones reflejen siempre los valores del amor y del bien.</div>
+    </details>
+
+    <details class="oracion-item">
+      <summary><span>Oración por la Paz Interior</span><span class="toggle">+</span></summary>
+      <div class="oracion-text">Amado Padre, en medio de las preocupaciones y los desafíos cotidianos, te pido el regalo de la paz interior.
+
+Enséñame a confiar en los tiempos de la vida y a comprender que no todo depende de mi voluntad. Ayúdame a soltar aquello que no puedo controlar y a concentrarme en aquello que sí puedo mejorar.
+
+Que mi mente encuentre calma, que mi corazón encuentre consuelo y que mi espíritu permanezca firme aun cuando los vientos de la adversidad soplen con fuerza.
+
+Que la paz que proviene de Ti se instale en mi ser y acompañe cada uno de mis días.</div>
+    </details>
+
+    <details class="oracion-item">
+      <summary><span>Oración de Gratitud</span><span class="toggle">+</span></summary>
+      <div class="oracion-text">Señor, gracias por la vida que me has concedido, por las oportunidades de aprendizaje, por las personas que acompañan mi camino y por las lecciones que fortalecen mi espíritu.
+
+Gracias por los momentos de alegría que alimentan mi esperanza y también por las pruebas que me ayudan a crecer.
+
+Ayúdame a valorar las pequeñas bendiciones de cada día y a reconocer tu presencia incluso en las circunstancias más simples.
+
+Que nunca permita que las dificultades me hagan olvidar todo aquello que ya he recibido de tu amor infinito.</div>
+    </details>
+
+    <details class="oracion-item">
+      <summary><span>Oración por los Seres Queridos que Partieron</span><span class="toggle">+</span></summary>
+      <div class="oracion-text">Dios misericordioso, pongo en tus manos a los seres queridos que ya han partido hacia la vida espiritual.
+
+Que reciban tu luz, tu protección y las oportunidades necesarias para continuar su evolución.
+
+Si aún cargan preocupaciones o sufrimientos, permite que encuentren consuelo y renovación.
+
+Ayúdanos a quienes seguimos aquí a comprender que el amor verdadero no termina con la muerte y que los vínculos del alma continúan más allá de la materia.
+
+Que el recuerdo de quienes amamos sea siempre motivo de gratitud y esperanza.</div>
+    </details>
+
+    <details class="oracion-item">
+      <summary><span>Oración para Comenzar el Día</span><span class="toggle">+</span></summary>
+      <div class="oracion-text">Señor, al despertar en esta nueva jornada, te entrego mis pensamientos, mis proyectos y mis preocupaciones.
+
+Que este día sea una oportunidad para hacer el bien, aprender algo nuevo y sembrar esperanza en quienes me rodean.
+
+Protégeme de la impaciencia, de las palabras hirientes y de las decisiones impulsivas.
+
+Permite que cada encuentro sea una oportunidad para ejercer la comprensión, la empatía y el respeto.
+
+Que al finalizar el día pueda mirar hacia atrás y sentir que avancé un paso más en mi crecimiento espiritual.</div>
+    </details>
+
+    <details class="oracion-item">
+      <summary><span>Oración para Antes de Dormir</span><span class="toggle">+</span></summary>
+      <div class="oracion-text">Padre amado, concluye este día y deseo agradecerte por cada experiencia vivida.
+
+Si he cometido errores, dame la humildad para reconocerlos y la fuerza para corregirlos. Si he causado algún dolor, ayúdame a repararlo. Si alguien me ha herido, ayúdame a perdonar.
+
+Durante el descanso de mi cuerpo, permite que mi espíritu reciba enseñanzas y energías renovadoras para continuar su camino de evolución.
+
+Que tu paz me acompañe durante la noche y que mañana pueda despertar con renovada fe y esperanza.</div>
+    </details>
+
+    <details class="oracion-item">
+      <summary><span>Oración de Elevación Espiritual</span><span class="toggle">+</span></summary>
+      <div class="oracion-text">Señor Dios, fuente de amor y sabiduría, ayúdame a recordar el verdadero propósito de mi existencia.
+
+Que no viva solamente para alcanzar objetivos materiales, sino también para desarrollar las virtudes que ennoblecen el alma.
+
+Enséñame a ser más paciente cuando enfrente dificultades, más comprensivo ante los errores ajenos y más generoso con quienes necesiten ayuda.
+
+Que cada pensamiento, cada palabra y cada acción contribuyan a mi propia evolución y al bienestar de quienes me rodean.
+
+Haz que mi vida sea un reflejo de tu amor y que, allí donde vaya, pueda sembrar paz, esperanza y bondad.</div>
+    </details>
+
+  </div>
+</section>
+
+<section class="espiritu-verdad" id="espiritu-verdad">
+  <svg class="section-motif" viewBox="0 0 200 200" style="top:-40px; right:-40px; width:280px; height:auto;" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#D8A54A" stroke-width="1.2">
+      <circle cx="100" cy="100" r="30"/>
+      <circle cx="100" cy="100" r="6" fill="#D8A54A" stroke="none"/>
+      <line x1="100" y1="20" x2="100" y2="45"/>
+      <line x1="100" y1="155" x2="100" y2="180"/>
+      <line x1="20" y1="100" x2="45" y2="100"/>
+      <line x1="155" y1="100" x2="180" y2="100"/>
+      <line x1="43" y1="43" x2="60" y2="60"/>
+      <line x1="140" y1="140" x2="157" y2="157"/>
+      <line x1="157" y1="43" x2="140" y2="60"/>
+      <line x1="43" y1="157" x2="60" y2="140"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">VI.</span>
+      <h2>Espíritu de la Verdad</h2>
+      <p class="desc">Sobre los espíritus protectores que nos acompañan en el camino.</p>
+    </div>
+
+    <div class="ev-block">
+      <h3>👼 ¿Qué es un Ángel Guardián?</h3>
+      <p>Según la doctrina espírita, cada persona cuenta con la asistencia de un Espíritu Protector, también conocido como Ángel Guardián. Se trata de un espíritu más evolucionado que acepta la misión de acompañarnos a lo largo de nuestra existencia, inspirándonos hacia el bien y ayudándonos en nuestro crecimiento moral.</p>
+      <p>Su misión no es evitar todas nuestras dificultades, sino orientarnos para que aprendamos de ellas y podamos tomar mejores decisiones. Respeta siempre nuestro libre albedrío, por lo que nunca impone su voluntad ni interviene anulando nuestras elecciones.</p>
+      <p>El Ángel Guardián nos acompaña en los momentos de alegría, tristeza, duda y sufrimiento, ofreciendo apoyo espiritual constante, aun cuando no seamos conscientes de su presencia.</p>
+      <div class="bubble">"Dios nunca deja a sus hijos sin amparo. Todos contamos con la asistencia de espíritus que nos inspiran y protegen en nuestro camino evolutivo."</div>
+    </div>
+
+    <div class="ev-block">
+      <h3>🙏 ¿Cómo conectar con nuestro Espíritu Protector?</h3>
+      <p>La conexión no requiere rituales especiales ni fórmulas complejas. El camino principal es la elevación del pensamiento y la sinceridad del corazón.</p>
+      <div class="icon-grid">
+        <div class="icon-card">
+          <span class="icon">🙏</span>
+          <h4>La oración sincera</h4>
+          <p>Hablar con Dios y con nuestro Espíritu Protector como lo haríamos con un amigo cercano.</p>
+          <span class="quote">"Ayúdame a comprender, a actuar correctamente y a encontrar serenidad para afrontar mis desafíos."</span>
+        </div>
+        <div class="icon-card">
+          <span class="icon">💚</span>
+          <h4>La práctica del bien</h4>
+          <p>Los buenos espíritus se acercan más fácilmente cuando cultivamos pensamientos nobles, respeto, solidaridad y amor al prójimo.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">🧘</span>
+          <h4>La meditación y el silencio interior</h4>
+          <p>Momentos de tranquilidad permiten percibir con mayor claridad las intuiciones y orientaciones espirituales.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">📖</span>
+          <h4>La lectura edificante</h4>
+          <p>El estudio de enseñanzas espirituales eleva nuestra vibración mental y favorece la inspiración de los buenos espíritus.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">🔄</span>
+          <h4>La reforma íntima</h4>
+          <p>Trabajar diariamente en nuestras imperfecciones fortalece la sintonía con energías más elevadas.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev-block">
+      <h3>✨ Señales de inspiración y protección</h3>
+      <p>La doctrina espírita enseña que los espíritus protectores se comunican principalmente a través de la intuición y la inspiración. Algunas señales frecuentes pueden ser:</p>
+      <div class="icon-grid">
+        <div class="icon-card">
+          <span class="icon">🌟</span>
+          <h4>Una intuición repentina</h4>
+          <p>Esa sensación interior que nos impulsa a actuar correctamente o evitar una situación perjudicial.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">🌟</span>
+          <h4>Una idea esclarecedora</h4>
+          <p>Cuando una solución aparece de forma inesperada en un momento de dificultad.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">🌟</span>
+          <h4>Sensación de calma</h4>
+          <p>En situaciones complejas, muchas personas experimentan una profunda serenidad que les permite continuar adelante.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">🌟</span>
+          <h4>Encuentros significativos</h4>
+          <p>Personas, mensajes, libros o situaciones que llegan justo cuando más los necesitamos.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">🌟</span>
+          <h4>Fortaleza inesperada</h4>
+          <p>La capacidad de superar pruebas que parecían imposibles de afrontar.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">🌟</span>
+          <h4>Impulso hacia el bien</h4>
+          <p>Sentir el deseo espontáneo de ayudar, perdonar, comprender o actuar con amor.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev-block">
+      <h3>💡 Lo que los Espíritus Protectores no hacen</h3>
+      <p>Es importante comprender que los espíritus protectores:</p>
+      <ul class="not-list">
+        <li>No toman decisiones por nosotros.</li>
+        <li>No eliminan todas las dificultades.</li>
+        <li>No garantizan éxitos materiales.</li>
+        <li>No sustituyen nuestro esfuerzo personal.</li>
+        <li>No favorecen intereses egoístas.</li>
+      </ul>
+      <p style="margin-top:18px;">Su función es ayudarnos a evolucionar espiritualmente, no evitar las lecciones que la vida nos presenta.</p>
+    </div>
+
+    <div class="ev-block">
+      <h3>🌿 Reflexión</h3>
+      <div class="ev-reflexion">
+        <p>Tu Espíritu Protector no camina delante de ti para evitar cada obstáculo, ni detrás para corregir cada error. Camina a tu lado, inspirando pensamientos de luz, alentando tus mejores decisiones y recordándote, en silencio, que nunca estás solo.</p>
+        <p>Incluso en los momentos en que sientas que todo está oscuro, una presencia amorosa continúa acompañándote, confiando en tu capacidad para aprender, crecer y transformar las pruebas en oportunidades de evolución.</p>
+        <p>La protección espiritual no consiste en una vida sin dificultades, sino en contar con la fuerza necesaria para atravesarlas con fe, esperanza y amor.</p>
+      </div>
+    </div>
+
+    <div class="ev-block">
+      <h3>🕯️ Oración al Espíritu Protector</h3>
+      <div class="oracion-destacada">
+        <p>Amado Espíritu Protector, agradezco tu presencia constante en mi vida.</p>
+        <p>Inspira mis pensamientos para que elija siempre el camino del bien. Ayúdame a reconocer mis errores con humildad y a transformarlos en oportunidades de aprendizaje.</p>
+        <p>Cuando la tristeza me visite, bríndame consuelo. Cuando la duda aparezca, ilumina mi entendimiento. Cuando el miedo intente detenerme, fortalece mi fe.</p>
+        <p>Que pueda escuchar tus inspiraciones a través de mi conciencia y actuar con amor hacia todos los seres.</p>
+        <p>Gracias por acompañarme en cada paso de mi camino y por ayudarme a acercarme cada día a mi mejor versión.</p>
+        <p>Que la paz de Dios habite en mi corazón. Así sea. 🙏</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="espiritu-verdad" id="autodefensa">
+  <svg class="section-motif" viewBox="0 0 200 240" style="top:-30px; right:-30px; width:240px; height:auto;" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#D8A54A" stroke-width="1.3">
+      <path d="M100 20 L170 45 C170 120, 140 180, 100 210 C60 180, 30 120, 30 45 Z"/>
+      <circle cx="100" cy="105" r="28"/>
+      <path d="M100 80 L100 130 M78 105 L122 105" stroke-width="1"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">VII.</span>
+      <h2>Autodefensa Energética</h2>
+      <p class="desc">El arte de proteger el espíritu, según la Doctrina Espírita.</p>
+    </div>
+
+    <div class="ev-block">
+      <h3>🛡️ ¿Qué es realmente la autodefensa energética?</h3>
+      <p>Muchas personas creen que la protección espiritual consiste en defenderse de fuerzas externas. Sin embargo, la doctrina espírita enseña que la mayor protección nace desde nuestro interior.</p>
+      <p>Nuestros pensamientos, sentimientos y acciones generan una determinada vibración espiritual. Cuando cultivamos la paz, la fe y el amor, fortalecemos nuestro campo magnético y nos volvemos menos vulnerables a las influencias negativas.</p>
+      <p>En cambio, cuando alimentamos el odio, el miedo, el resentimiento o el egoísmo, disminuimos nuestras defensas espirituales y emocionales.</p>
+      <div class="bubble">"La verdadera defensa no es cerrar la puerta al mundo, sino abrir el corazón a la luz."</div>
+    </div>
+
+    <div class="ev-block">
+      <h3>🌟 La Ley de Afinidad Espiritual</h3>
+      <p>Según el espiritismo, los espíritus se aproximan por afinidad. Así como en la vida material buscamos personas con gustos e intereses similares, en el plano espiritual ocurre algo semejante.</p>
+      <div class="icon-grid">
+        <div class="icon-card">
+          <span class="icon">✨</span>
+          <h4>Pensamientos elevados atraen</h4>
+          <ul>
+            <li>Inspiración</li>
+            <li>Serenidad</li>
+            <li>Coraje</li>
+            <li>Claridad mental</li>
+            <li>Buenos consejos intuitivos</li>
+          </ul>
+        </div>
+        <div class="icon-card">
+          <span class="icon">🌫️</span>
+          <h4>Pensamientos inferiores atraen</h4>
+          <ul>
+            <li>Pesimismo</li>
+            <li>Desánimo</li>
+            <li>Irritabilidad</li>
+            <li>Confusión emocional</li>
+            <li>Impulsividad</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:22px;">Por eso Kardec enseñaba que la vigilancia de nuestros pensamientos constituye una de las principales formas de protección espiritual.</p>
+    </div>
+
+    <div class="ev-block">
+      <h3>🧠 La Mente: Nuestra Principal Fuente de Energía</h3>
+      <p>La calidad de nuestra energía depende en gran medida de aquello que alimentamos diariamente.</p>
+      <div class="bubble">¿Qué leo? ¿Qué escucho? ¿Qué programas veo? ¿Qué conversaciones mantengo? ¿Qué emociones cultivo?</div>
+      <p>Todo deja una huella en nuestro mundo interior. Una mente permanentemente expuesta a conflictos, críticas y negatividad termina absorbiendo parte de esas vibraciones. Por el contrario, la lectura edificante, la oración y los pensamientos nobles fortalecen nuestra paz interior.</p>
+    </div>
+
+    <div class="ev-block">
+      <h3>⚔️ Los Principales Ladrones de Energía</h3>
+      <div class="icon-grid">
+        <div class="icon-card">
+          <span class="icon">💔</span>
+          <h4>El resentimiento</h4>
+          <p>Cada vez que revivimos una ofensa, volvemos a experimentar el sufrimiento asociado a ella.</p>
+          <p class="antidote">El perdón no libera únicamente al otro. Nos libera a nosotros.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">😤</span>
+          <h4>La queja constante</h4>
+          <p>La queja repetitiva genera un estado mental que dificulta percibir soluciones.</p>
+          <p class="antidote">Agradecer no elimina los problemas, pero cambia nuestra forma de enfrentarlos.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">😨</span>
+          <h4>El miedo excesivo</h4>
+          <p>El miedo prolongado reduce nuestra confianza y nos hace sentir vulnerables.</p>
+          <p class="antidote">La fe no elimina las dificultades, pero nos recuerda que podemos atravesarlas.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">👑</span>
+          <h4>El orgullo</h4>
+          <p>El orgullo nos impide aprender.</p>
+          <p class="antidote">La humildad permite crecer. Muchas veces la protección espiritual llega en forma de enseñanza y corrección.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev-block">
+      <h3>🌿 Hábitos Diarios de Protección Espiritual</h3>
+      <div class="icon-grid">
+        <div class="icon-card">
+          <span class="icon">🌅</span>
+          <h4>Al despertar</h4>
+          <p>Antes de mirar el teléfono o comenzar las actividades:</p>
+          <ul>
+            <li>Realizar una oración breve</li>
+            <li>Agradecer por la vida</li>
+            <li>Pedir inspiración para el día</li>
+            <li>Mentalizar pensamientos positivos</li>
+          </ul>
+          <p class="antidote">Solo unos minutos pueden cambiar la calidad de la jornada.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">☀️</span>
+          <h4>Durante el día</h4>
+          <p>Intentar practicar:</p>
+          <ul>
+            <li>La paciencia</li>
+            <li>La comprensión</li>
+            <li>El respeto</li>
+            <li>La empatía</li>
+            <li>La tolerancia</li>
+          </ul>
+          <p class="antidote">Cada virtud funciona como una fortaleza espiritual.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">🌙</span>
+          <h4>Antes de dormir</h4>
+          <p>Realizar un examen de conciencia, preguntándose:</p>
+          <ul>
+            <li>¿Qué hice bien hoy?</li>
+            <li>¿Dónde podría mejorar?</li>
+            <li>¿Ayudé a alguien?</li>
+            <li>¿Hice daño a alguien?</li>
+            <li>¿Qué aprendizaje me dejó este día?</li>
+          </ul>
+          <p class="antidote">Práctica recomendada por Allan Kardec como herramienta de evolución espiritual.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev-block">
+      <h3>✨ Protección del Hogar</h3>
+      <p>El hogar es uno de los lugares donde más influencias intercambiamos. Un ambiente armonioso favorece el bienestar de todos sus integrantes. Algunas prácticas recomendadas:</p>
+      <ul class="check-list">
+        <li>Oración familiar semanal</li>
+        <li>Lecturas edificantes</li>
+        <li>Evitar discusiones innecesarias</li>
+        <li>Mantener orden y limpieza</li>
+        <li>Cultivar el diálogo respetuoso</li>
+        <li>Practicar la gratitud</li>
+      </ul>
+      <p style="margin-top:20px;">Un hogar donde existe amor y respeto genera un ambiente favorable para la paz espiritual.</p>
+    </div>
+
+    <div class="ev-block">
+      <h3>👼 La Protección de los Espíritus Benefactores</h3>
+      <p>Los espíritus protectores no nos evitan todas las pruebas. Si así fuera, no aprenderíamos. Su ayuda suele manifestarse mediante:</p>
+      <ul class="check-list">
+        <li>Intuiciones</li>
+        <li>Ideas esclarecedoras</li>
+        <li>Sensaciones de calma</li>
+        <li>Encuentros providenciales</li>
+        <li>Inspiraciones para actuar correctamente</li>
+        <li>Fuerza para superar dificultades</li>
+      </ul>
+      <p style="margin-top:20px;">Muchas veces la ayuda espiritual llega de manera silenciosa y discreta.</p>
+    </div>
+
+    <div class="ev-block">
+      <h3>🌞 Señales de un Buen Equilibrio Energético</h3>
+      <p>Cuando estamos espiritualmente fortalecidos solemos experimentar:</p>
+      <ul class="check-list">
+        <li>Mayor paz interior</li>
+        <li>Menos necesidad de discutir</li>
+        <li>Más paciencia frente a las dificultades</li>
+        <li>Capacidad para perdonar</li>
+        <li>Claridad para tomar decisiones</li>
+        <li>Sentimiento de confianza en la vida</li>
+        <li>Deseo sincero de ayudar a los demás</li>
+      </ul>
+      <p style="margin-top:20px;">No significa ausencia de problemas, sino capacidad para enfrentarlos con serenidad.</p>
+    </div>
+
+    <div class="ev-block">
+      <h3>💎 Las Cinco Virtudes que Más Protegen al Espíritu</h3>
+      <div class="icon-grid">
+        <div class="icon-card">
+          <span class="icon">1️⃣</span>
+          <h4>Fe</h4>
+          <p>Confiar en que todo tiene un propósito.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">2️⃣</span>
+          <h4>Humildad</h4>
+          <p>Reconocer nuestras imperfecciones y aprender.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">3️⃣</span>
+          <h4>Gratitud</h4>
+          <p>Valorar las bendiciones cotidianas.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">4️⃣</span>
+          <h4>Caridad</h4>
+          <p>Ayudar sin esperar nada a cambio.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon">5️⃣</span>
+          <h4>Amor</h4>
+          <p>La energía más elevada y transformadora.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev-block">
+      <h3>🙏 Oración de Fortalecimiento Espiritual</h3>
+      <div class="oracion-destacada">
+        <p>Señor de la Vida, fuente infinita de amor y sabiduría, permite que tu luz habite en mis pensamientos y en mi corazón.</p>
+        <p>Ayúdame a mantener serenidad en los momentos de dificultad, prudencia en mis decisiones y bondad en mis acciones.</p>
+        <p>Que no permita que el miedo domine mi mente ni que el resentimiento encuentre morada en mi alma.</p>
+        <p>Inspírame a cultivar la fe cuando surjan las pruebas, la paciencia cuando aparezcan los desafíos y la esperanza cuando el camino parezca incierto.</p>
+        <p>Que los buenos espíritus me acompañen, orienten mis pasos y fortalezcan mis intenciones de crecimiento y mejora.</p>
+        <p>Protege mi hogar, mi familia y a todos aquellos que amo.</p>
+        <p>Haz que mis palabras lleven consuelo, que mis pensamientos irradien paz y que mis acciones reflejen el amor que Tú depositas en cada uno de nosotros.</p>
+        <p>Que cada día pueda ser una oportunidad para aprender, servir y evolucionar.</p>
+        <p>Así sea.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="espiritu-verdad" id="mito-realidad">
+  <svg class="section-motif" viewBox="0 0 240 200" style="top:-20px; right:-30px; width:260px; height:auto;" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#D8A54A" stroke-width="1.2">
+      <line x1="120" y1="20" x2="120" y2="160"/>
+      <line x1="40" y1="50" x2="200" y2="50"/>
+      <path d="M40 50 L20 90 C20 100, 60 100, 60 90 Z"/>
+      <path d="M200 50 L180 90 C180 100, 220 100, 220 90 Z"/>
+      <line x1="90" y1="160" x2="150" y2="160"/>
+      <circle cx="120" cy="20" r="4" fill="#D8A54A" stroke="none"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">VIII.</span>
+      <h2>Mito o Realidad</h2>
+      <p class="desc">Aclarando ideas comunes sobre el Espiritismo. Tocá cada mito para ver la realidad.</p>
+    </div>
+
+    <div class="mito-subhead">Mitos sobre el Espiritismo</div>
+
+    <div class="mito-item">
+      <span class="label"><span class="tag">Mito</span>"Los espíritus controlan nuestra vida"</span>
+      <div class="mito-body">
+        <span class="realidad-tag">Realidad</span>
+        <p>La doctrina espírita enseña que cada persona posee libre albedrío y es responsable de sus decisiones. Los espíritus pueden inspirar o sugerir ideas, pero no tienen poder para obligarnos a actuar contra nuestra voluntad. Cada pensamiento, acción y elección continúa siendo responsabilidad de quien la realiza.</p>
+        <div class="bubble">"La influencia existe, pero la decisión siempre es nuestra."</div>
+      </div>
+    </div>
+
+    <div class="mito-item">
+      <span class="label"><span class="tag">Mito</span>"Todos los problemas son causados por espíritus"</span>
+      <div class="mito-body">
+        <span class="realidad-tag">Realidad</span>
+        <p>No todo problema emocional, físico o psicológico tiene origen espiritual. Muchas dificultades surgen de:</p>
+        <ul>
+          <li>Factores emocionales</li>
+          <li>Malos hábitos</li>
+          <li>Problemas de salud</li>
+          <li>Situaciones sociales</li>
+          <li>Decisiones personales</li>
+        </ul>
+        <p>El espiritismo invita a analizar cada situación con equilibrio y responsabilidad.</p>
+      </div>
+    </div>
+
+    <div class="mito-item">
+      <span class="label"><span class="tag">Mito</span>"La protección espiritual se compra"</span>
+      <div class="mito-body">
+        <span class="realidad-tag">Realidad</span>
+        <p>Ningún objeto posee poder mágico. La verdadera protección nace de:</p>
+        <ul>
+          <li>La oración</li>
+          <li>La fe</li>
+          <li>La conducta moral</li>
+          <li>La práctica del bien</li>
+          <li>La reforma íntima</li>
+        </ul>
+        <p>La luz interior siempre será más importante que cualquier elemento material.</p>
+      </div>
+    </div>
+
+    <div class="mito-item">
+      <span class="label"><span class="tag">Mito</span>"Los espíritus castigan a las personas"</span>
+      <div class="mito-body">
+        <span class="realidad-tag">Realidad</span>
+        <p>La doctrina espírita no enseña la existencia de castigos arbitrarios. Las consecuencias de nuestras acciones forman parte de las leyes naturales de causa y efecto. Lo que muchas veces llamamos castigo es una oportunidad de aprendizaje y crecimiento.</p>
+      </div>
+    </div>
+
+    <div class="mito-item">
+      <span class="label"><span class="tag">Mito</span>"La mediumnidad es un don para personas especiales"</span>
+      <div class="mito-body">
+        <span class="realidad-tag">Realidad</span>
+        <p>La mediumnidad es considerada una facultad humana que puede presentarse en distintos grados. No indica superioridad espiritual. Una persona puede ser médium y, al mismo tiempo, estar transitando su propio proceso de aprendizaje y evolución.</p>
+      </div>
+    </div>
+
+    <div class="mito-item">
+      <span class="label"><span class="tag">Mito</span>"Sentir tristeza significa tener malas energías"</span>
+      <div class="mito-body">
+        <span class="realidad-tag">Realidad</span>
+        <p>La tristeza forma parte de la experiencia humana. Todos atravesamos momentos difíciles. Lo importante es observar cómo gestionamos nuestras emociones y buscar ayuda cuando sea necesario. Sentirse triste no significa estar espiritualmente debilitado.</p>
+      </div>
+    </div>
+
+    <div class="mito-item">
+      <span class="label"><span class="tag">Mito</span>"Las energías negativas son más fuertes que las positivas"</span>
+      <div class="mito-body">
+        <span class="realidad-tag">Realidad</span>
+        <p>Según el espiritismo, el bien posee una fuerza superior. El amor, la fe y la caridad generan una protección mucho más poderosa que el miedo.</p>
+        <div class="bubble">"La oscuridad desaparece cuando encendemos una luz."</div>
+      </div>
+    </div>
+
+    <div class="mito-item">
+      <span class="label"><span class="tag">Mito</span>"Los espíritus protectores resuelven nuestros problemas"</span>
+      <div class="mito-body">
+        <span class="realidad-tag">Realidad</span>
+        <p>Los espíritus protectores ayudan, inspiran y orientan. Pero no realizan el trabajo que nos corresponde hacer. La evolución requiere esfuerzo personal. Muchas veces la ayuda consiste en darnos fuerza para superar una prueba, no en eliminarla.</p>
+      </div>
+    </div>
+
+    <div class="mito-item">
+      <span class="label"><span class="tag">Mito</span>"Todo lo que se recibe espiritualmente es verdadero"</span>
+      <div class="mito-body">
+        <span class="realidad-tag">Realidad</span>
+        <p>La doctrina espírita enseña la importancia del discernimiento. No toda inspiración, sueño o mensaje debe aceptarse automáticamente. Es necesario analizar:</p>
+        <ul>
+          <li>Su contenido</li>
+          <li>Su coherencia</li>
+          <li>Su utilidad moral</li>
+          <li>Sus consecuencias</li>
+        </ul>
+        <p>El sentido crítico forma parte del estudio espírita.</p>
+      </div>
+    </div>
+
+    <div class="mito-item">
+      <span class="label"><span class="tag">Mito</span>"La obsesión espiritual es una posesión demoníaca"</span>
+      <div class="mito-body">
+        <span class="realidad-tag">Realidad</span>
+        <p>Para el espiritismo, la obsesión es una influencia espiritual negativa persistente. No implica necesariamente fenómenos extraordinarios. Muchas veces se manifiesta mediante:</p>
+        <ul>
+          <li>Pensamientos repetitivos</li>
+          <li>Desánimo constante</li>
+          <li>Irritabilidad excesiva</li>
+          <li>Dificultad para mantener pensamientos positivos</li>
+        </ul>
+        <p>La oración, el estudio, la reforma íntima y el apoyo espiritual son herramientas fundamentales para superarla.</p>
+      </div>
+    </div>
+
+    <div class="mito-subhead">Mitos sobre la Autodefensa Energética</div>
+
+    <div class="mito-item">
+      <span class="label"><span class="tag">Mito</span>"Hay personas que me roban la energía"</span>
+      <div class="mito-body">
+        <span class="realidad-tag">Realidad</span>
+        <p>Algunas relaciones pueden resultar emocionalmente desgastantes, pero nuestra reacción también influye. Aprender a establecer límites saludables y conservar la serenidad es parte de la protección espiritual.</p>
+      </div>
+    </div>
+
+    <div class="mito-item">
+      <span class="label"><span class="tag">Mito</span>"Tengo mala suerte"</span>
+      <div class="mito-body">
+        <span class="realidad-tag">Realidad</span>
+        <p>El espiritismo propone reemplazar la idea de suerte por la de aprendizaje, decisiones y oportunidades de crecimiento. No todo lo que ocurre puede comprenderse de inmediato, pero toda experiencia puede dejar una enseñanza.</p>
+      </div>
+    </div>
+
+    <div class="mito-item">
+      <span class="label"><span class="tag">Mito</span>"Si rezo una vez, todos mis problemas desaparecerán"</span>
+      <div class="mito-body">
+        <span class="realidad-tag">Realidad</span>
+        <p>La oración no cambia mágicamente las circunstancias. Lo que cambia es nuestra capacidad de enfrentarlas. Orar fortalece el corazón, aclara la mente y nos acerca a las inspiraciones del bien.</p>
+      </div>
+    </div>
+
+    <div class="mito-item">
+      <span class="label"><span class="tag">Mito</span>"Las pruebas son señales de abandono divino"</span>
+      <div class="mito-body">
+        <span class="realidad-tag">Realidad</span>
+        <p>Precisamente en las pruebas es cuando más oportunidades tenemos de crecer. Las dificultades pueden desarrollar:</p>
+        <ul>
+          <li>Fortaleza</li>
+          <li>Paciencia</li>
+          <li>Humildad</li>
+          <li>Compasión</li>
+          <li>Fe</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ev-block" style="margin-top: 48px;">
+      <h3>💡 Reflexión Final</h3>
+      <div class="ev-reflexion">
+        <p>Muchas veces buscamos protección en el exterior, cuando la mayor fortaleza se encuentra dentro de nosotros. Cada pensamiento noble, cada gesto de amor, cada acto de perdón y cada oración sincera construyen una muralla de luz que ninguna sombra puede atravesar.</p>
+        <p>La mejor autodefensa espiritual no consiste en temer al mal, sino en fortalecer constantemente el bien que habita en nuestro corazón. Cuando cultivamos paz, fe y amor, nos convertimos en nuestra propia fuente de equilibrio y protección. 🕊️✨</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  Sendero de Luz — espacio de estudio espírita. Este sitio está en construcción; iremos sumando módulos.
+</footer>
+
+<button class="floating-top" id="backToTop" aria-label="Volver arriba">↑</button>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <button class="modal-close" id="closeModalBtn">✕</button>
+    <h3>Agregar libro a la biblioteca</h3>
+    <p style="font-size:0.82rem; color:var(--ink-soft); margin:-8px 0 4px;">Se guarda en este navegador, no en el servidor del sitio.</p>
+    <label for="bookTitle">Título</label>
+    <input type="text" id="bookTitle" placeholder="Ej: El Libro de los Espíritus">
+    <label for="bookAuthor">Autor</label>
+    <input type="text" id="bookAuthor" placeholder="Ej: Allan Kardec">
+    <label for="bookLink">Enlace (opcional)</label>
+    <input type="text" id="bookLink" placeholder="https://...">
+    <div class="modal-actions">
+      <button class="cancel" id="cancelBtn">Cancelar</button>
+      <button class="save" id="saveBtn">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'biblioteca:books';
+  const shelfEl = document.getElementById('shelf');
+  const countEl = document.getElementById('bookCount');
+  const modal = document.getElementById('modalBackdrop');
+  const searchInput = document.getElementById('searchBooks');
+  const clearSearchBtn = document.getElementById('clearSearchBtn');
+  const backToTopBtn = document.getElementById('backToTop');
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+  let allBooks = [];
+
+  // Catálogo traído de la carpeta de Google Drive de la escuela, organizado por autor.
+  const SEED_BOOKS = [
+    // Allan Kardec
+    { author: 'Allan Kardec', title: 'El Libro de los Espíritus', link: 'https://drive.google.com/file/d/17hT0CcddIUQkEWQjcyIFEB-nGT7vUlA7/view' },
+    { author: 'Allan Kardec', title: 'El Libro de los Médiums', link: 'https://drive.google.com/file/d/17YQ_kWpPdnGZImZ0yKDCvss2z0rfKvhP/view' },
+    { author: 'Allan Kardec', title: 'El Evangelio según el Espiritismo', link: 'https://drive.google.com/file/d/17hqmQx7YTRJKD-SAmpC0SeQqYvZ3lvnc/view' },
+    { author: 'Allan Kardec', title: 'El Cielo y el Infierno', link: 'https://drive.google.com/file/d/17qbxq18Qwar1FRar3fjX0zVl2As7FyVf/view' },
+    { author: 'Allan Kardec', title: 'La Génesis', link: 'https://drive.google.com/file/d/17J1_vvO9hUZ6E2YoHVhkk1tPnslPL1_O/view' },
+    { author: 'Allan Kardec', title: 'Qué es el Espiritismo', link: 'https://drive.google.com/file/d/18W1iJcJnNEA0HvCzcp_Iq15kqZ_sOgLa/view' },
+    { author: 'Allan Kardec', title: 'El Espiritismo en su Más Simple Expresión', link: 'https://drive.google.com/file/d/17ojNe-Zp2CvmD7HEBGthacbalpihQ4Iz/view' },
+    { author: 'Allan Kardec', title: 'Obras Póstumas', link: 'https://drive.google.com/file/d/17IpG2DOp7T6v3PvoMwjg6mUplY6owymW/view' },
+    { author: 'Allan Kardec', title: 'Constitución Transitoria del Espiritismo', link: 'https://drive.google.com/file/d/17uxV7jJYec9_RUfvnzhM1hntbvMZUv4A/view' },
+    { author: 'Allan Kardec', title: 'Viaje Espírita en 1862', link: 'https://drive.google.com/file/d/187NqNr9XWqKowoRxKWKAifuC2by7ew2l/view' },
+    { author: 'Allan Kardec', title: 'Colección de Oraciones Espíritas', link: 'https://drive.google.com/file/d/17xOPCbAOQcLo0Ads8BwBB6brzWhx1JyH/view' },
+    { author: 'Allan Kardec', title: 'Revista Espírita 1858–1861', link: 'https://drive.google.com/file/d/18CjNHPL2snjfPhj-3PKLqOgp6GYqV7sf/view' },
+    { author: 'Allan Kardec', title: 'Revista Espírita, enero de 1860', link: 'https://drive.google.com/file/d/18R9b_POlqbftLjMI4mo8vCCtPk_SV4hb/view' },
+    // Chico Xavier
+    { author: 'Chico Xavier', title: 'Nuestro Hogar', link: 'https://drive.google.com/file/d/16-R0NmmpGyzxCxotGZnk5D9T6OsFtedx/view' },
+    { author: 'Chico Xavier', title: 'Misioneros de la Luz', link: 'https://drive.google.com/file/d/165CDf7se56iGKhJdzRr0aaJTt7Z8lJv4/view' },
+    { author: 'Chico Xavier', title: 'Los Mensajeros', link: 'https://drive.google.com/file/d/14a0X4gCGJaJywTQ52z8zSbTmK8wnqpCW/view' },
+    { author: 'Chico Xavier', title: 'Acción y Reacción', link: 'https://drive.google.com/file/d/14IU3Ki7O9E7CETPRFllmK8on_glyfhTZ/view' },
+    { author: 'Chico Xavier', title: 'Desobsesión', link: 'https://drive.google.com/file/d/15sGpcZs4callBq_qLwYreD9bX9CYwAtC/view' },
+    { author: 'Chico Xavier', title: 'Evolución en Dos Mundos', link: 'https://drive.google.com/file/d/15T4h-yj9-lUNA2AfDYue_whUNDNPW52J/view' },
+    { author: 'Chico Xavier', title: 'En el Mundo Mayor', link: 'https://drive.google.com/file/d/15ZfzIR9f4oQzqxHypU34z8kAU6IOpoyn/view' },
+    { author: 'Chico Xavier', title: 'En los Dominios de la Mediumnidad', link: 'https://drive.google.com/file/d/15ihSIJPHy0SnG0xJFdflOuH1K-gOIRBk/view' },
+    { author: 'Chico Xavier', title: 'Entre la Tierra y el Cielo', link: 'https://drive.google.com/file/d/15bFDKNBj94eNX8JmojpJynlxgN4O7FjZ/view' },
+    { author: 'Chico Xavier', title: 'Liberación', link: 'https://drive.google.com/file/d/15-0r2p3GullR-DjxkI0CJqQTBOXIWhAR/view' },
+    { author: 'Chico Xavier', title: 'Lázaro', link: 'https://drive.google.com/file/d/156jYVtOz42PfXAfzUffnLw5xIvEGKHuO/view' },
+    { author: 'Chico Xavier', title: '¡Ave, Cristo!', link: 'https://drive.google.com/file/d/14G2qwFlOyGq7QEtbUbVcgNq-J04OqOLq/view' },
+    { author: 'Chico Xavier', title: 'Camino, Verdad y Vida', link: 'https://drive.google.com/file/d/14-5zpLxJSLW7pFtI8mIOFx0M5BOtJfKx/view' },
+    { author: 'Chico Xavier', title: 'Cuentos y Apólogos', link: 'https://drive.google.com/file/d/13lLI5kbLO0Ei4Lp4I1NiF5bmjouEexdu/view' },
+    { author: 'Chico Xavier', title: 'Coraje', link: 'https://drive.google.com/file/d/13mA9VWKg45pJwWdb44JUcc5Z6euFjVvU/view' },
+    { author: 'Chico Xavier', title: 'Compañero', link: 'https://drive.google.com/file/d/13w5xq0YQWTmbVhK1HpZp1PBUmHxH8ubo/view' },
+    { author: 'Chico Xavier', title: 'El Consolador', link: 'https://drive.google.com/file/d/13mZc-lnmj3AN7DjqMWDELOyB8TDAcRLK/view' },
+    { author: 'Chico Xavier', title: 'Alborada Cristiana', link: 'https://drive.google.com/file/d/14HKebIwvWdvfLMQbfh6iMJyk3b9K8v9b/view' },
+    { author: 'Chico Xavier', title: 'Atención', link: 'https://drive.google.com/file/d/14GjBfYynOLHq-kTN-D4hyj7U42IPM5Jj/view' },
+    { author: 'Chico Xavier', title: 'Calma', link: 'https://drive.google.com/file/d/14ApkcXsReGiwJBqMCX6PijUsvUnesjrT/view' },
+    { author: 'Chico Xavier', title: 'Jesús en el Hogar', link: 'https://drive.google.com/file/d/156kv0FhAs-F6uhr5P52JQ3VkTc25kdeW/view' },
+    { author: 'Chico Xavier', title: 'Instrucciones Psicofónicas', link: 'https://drive.google.com/file/d/15E95eE6Iwsuxisx34TlynOykrdeHfFat/view' },
+    { author: 'Chico Xavier', title: 'Mediumnidad y Sintonía', link: 'https://drive.google.com/file/d/14kPszeK_adh0WyjOon4OZAnOWT1ZveQi/view' },
+    { author: 'Chico Xavier', title: 'Hace 2000 Años', link: 'https://drive.google.com/file/d/15GtK5seGVobHFVoVbcFsO7sjc80DibMM/view' },
+    { author: 'Chico Xavier', title: 'Fuente Viva', link: 'https://drive.google.com/file/d/15Q7UZYL9A6COkxh8yf4omug3CV0fVWa4/view' },
+    { author: 'Chico Xavier', title: 'Respuestas de la Vida', link: 'https://drive.google.com/file/d/176V9R2Au8nrCOcFvExihZTYeH8vpWnTd/view' },
+    { author: 'Chico Xavier', title: 'Y la Vida Continúa', link: 'https://drive.google.com/file/d/16no9GQeP-8ic_-2VoBq4SyUJfBVjPp39/view' },
+    { author: 'Chico Xavier', title: 'Renuncia', link: 'https://drive.google.com/file/d/179MvA3vIdc08AKFAsyYPRxNzrWoFfrAj/view' },
+    { author: 'Chico Xavier', title: 'Vale la Pena', link: 'https://drive.google.com/file/d/17-uQOCx-h3HvZMKKweX0-FO8_Gdp6kv6/view' },
+    { author: 'Chico Xavier', title: 'Vitrina de la Vida', link: 'https://drive.google.com/file/d/16sMjlchQDkqsNskqUgBid3em5Ov9x57a/view' },
+    { author: 'Chico Xavier', title: 'Señal Verde', link: 'https://drive.google.com/file/d/170JkRtdQYRTGFj1Hs-i1LWmzv_3v35DF/view' },
+    { author: 'Chico Xavier', title: 'Vida y Sexo', link: 'https://drive.google.com/file/d/16w3p75A1T9iOASnfwFLf08D4AF6EBGGr/view' },
+    { author: 'Chico Xavier', title: 'La Religión de los Espíritus', link: 'https://drive.google.com/file/d/17AcCuojzGTRsjjVrM0GaxNtBvwrLYMQB/view' },
+    { author: 'Chico Xavier', title: 'Siembra de los Médiums', link: 'https://drive.google.com/file/d/17-y24RKYnJ5OdLZCgA9KhE8d0O3JHOtG/view' },
+    { author: 'Chico Xavier', title: 'Pinga Fogo con Chico Xavier', link: 'https://drive.google.com/file/d/17E0zeA7qaWDsKYeL5dlbC84SzKuMBJnV/view' },
+    { author: 'Chico Xavier', title: 'Mensaje de un Pequeño Muerto', link: 'https://drive.google.com/file/d/1675XXLTz_99G-euU0lxwLAWeZXrl2FjY/view' },
+    { author: 'Chico Xavier', title: 'Abecedario del Bien', link: 'https://drive.google.com/file/d/14NukttipzZ5xsT_ZPwHdHGQNysMPYx5E/view' },
+    { author: 'Chico Xavier', title: 'Derrotero', link: 'https://drive.google.com/file/d/15xCE4LmoFicLizW32Yk73sf_cS6nYBc_/view' },
+    { author: 'Chico Xavier', title: 'Padre Nuestro', link: 'https://drive.google.com/file/d/15xEePnD1XUI2FAMMdX9miVSER9rzurg8/view' },
+    { author: 'Chico Xavier', title: 'Pensamiento y Vida', link: 'https://drive.google.com/file/d/17FuEhXm5MaTHE9VN7WNLpcPJrirmFajJ/view' },
+    { author: 'Chico Xavier', title: 'Pan Nuestro', link: 'https://drive.google.com/file/d/17G_ydPsppArND983VNCyDH8TYEE6Iue5/view' },
+    { author: 'Chico Xavier', title: 'Palabras de Chico Xavier', link: 'https://drive.google.com/file/d/17H6GE-8AlGD_aq3QRAXegglsZc6D20Sm/view' },
+    { author: 'Chico Xavier', title: 'Pablo y Esteban', link: 'https://drive.google.com/file/d/15zNjRwY9x5EVgYjms0Z-3_9bFGXstZOQ/view' },
+    { author: 'Chico Xavier', title: 'Volví', link: 'https://drive.google.com/file/d/16qM6s11yYi-5BVMvAtMDUCbdCyVG1JmU/view' },
+    { author: 'Chico Xavier', title: 'A Camino de la Luz', link: 'https://drive.google.com/file/d/14DxEnS6cNccz6IXNfWe51R1u2vgmMRbM/view' },
+    { author: 'Chico Xavier', title: 'Dinero', link: 'https://drive.google.com/file/d/15j333GxrmkxUGTkyCx7iM1HcIOhKOjV6/view' },
+    { author: 'Chico Xavier', title: 'Nacer y Renacer', link: 'https://drive.google.com/file/d/162_tKzTZGH5CKYxIU4iU62f4feiBExPW/view' },
+    { author: 'Chico Xavier', title: '50 Años Después', link: 'https://drive.google.com/file/d/14X5D9ivaSTP1eukJvprO3SzJxjfcpSjJ/view' },
+    // Ramatis
+    { author: 'Ramatis', title: 'Mensajes del Astral', link: 'https://drive.google.com/file/d/12L0kIxvaPsn2HJ3aukrt8RV5FLe1tZit/view' },
+    { author: 'Ramatis', title: 'Fisiología del Alma', link: 'https://drive.google.com/file/d/1Z0BzE16EZ5T25rJEPAim-BW1OB6ouDmk/view' },
+    // León Denis
+    { author: 'León Denis', title: 'Espiritismo y Fuerzas Radiantes', link: 'https://drive.google.com/file/d/11IJrbb36e1w91IMGAm7zaV7bgWiG3ypv/view' },
+    { author: 'León Denis', title: 'Espiritismo y Clero', link: 'https://drive.google.com/file/d/11INeNgUaDFAoIzaNTxt7MeD7LYurdqsp/view' },
+    { author: 'León Denis', title: 'El Porqué de la Vida', link: 'https://drive.google.com/file/d/1-gDiZbNJZplVhq6gk78rcB9ej4gR1997/view' },
+    { author: 'León Denis', title: 'Socialismo y Espiritismo', link: 'https://drive.google.com/file/d/119LuMK47nvgYj7D0dogJseF7OEycksK1/view' },
+    { author: 'León Denis', title: 'Espíritus y Médiums', link: 'https://drive.google.com/file/d/11FS4FZDRB8hlPxLRH-snkN3tDcMY-Hoo/view' },
+    { author: 'León Denis', title: 'El Mundo Invisible y la Guerra', link: 'https://drive.google.com/file/d/11BqLzkLbaM8F8HDKcPIKRzuNFFzJewbz/view' },
+    { author: 'León Denis', title: 'El Más Allá', link: 'https://drive.google.com/file/d/11MEzTZi4Fm-0gEuMmx3A86YUZj5XgA-Z/view' },
+    { author: 'León Denis', title: 'Juana de Arco', link: 'https://drive.google.com/file/d/11EaAEwPk1gMJl-Pv5YFVQOi7VtBv4B2I/view' },
+    { author: 'León Denis', title: 'El Gran Enigma', link: 'https://drive.google.com/file/d/1-jUrwf-PPGX6QggYul0EVSEPL_W-LdBP/view' },
+    { author: 'León Denis', title: 'Después de la Muerte', link: 'https://drive.google.com/file/d/1-jqRQcZ9eiQ8OsJNQMOR9zK5ChaqApTA/view' },
+    { author: 'León Denis', title: 'Cristianismo y Espiritismo', link: 'https://drive.google.com/file/d/1-kMgFLRazmsIHl7viRiosI2QHTxubDz8/view' },
+    { author: 'León Denis', title: 'El Problema del Ser y del Destino', link: 'https://drive.google.com/file/d/11KYVubi7T427GeQ5pPiQpm4sJ0Yq8_F_/view' },
+    // Amalia Domingo Soler
+    { author: 'Amalia Domingo Soler', title: 'Te Perdono', link: 'https://drive.google.com/file/d/18l6qz72heLE_vfExVlRVwe-LyiuNHF5Y/view' },
+    { author: 'Amalia Domingo Soler', title: 'Sus Más Hermosos Escritos', link: 'https://drive.google.com/file/d/19XPm26MSfd_Ni4PVJucV4IhAqdS0gPDq/view' },
+    { author: 'Amalia Domingo Soler', title: 'Réplicas', link: 'https://drive.google.com/file/d/1A_XFRxQADOuLoYut0gabQui9L8wM2EPZ/view' },
+    { author: 'Amalia Domingo Soler', title: 'Ramos de Violetas (2/2)', link: 'https://drive.google.com/file/d/1AaIHI3WwzJybJdHxrXzerUdGZVN-7tjt/view' },
+    { author: 'Amalia Domingo Soler', title: 'Ramos de Violetas (1/2)', link: 'https://drive.google.com/file/d/18aAXYAkRX3R02cYWQM2LyKx2FFYbU8MH/view' },
+    { author: 'Amalia Domingo Soler', title: 'Memorias de una Mujer', link: 'https://drive.google.com/file/d/18zzrLTrpoEIiGJlHhKGJtF32u5GBnObw/view' },
+    { author: 'Amalia Domingo Soler', title: 'Memorias del Padre Germán', link: 'https://drive.google.com/file/d/19dexDQB2Q28qNRqinQ7NRulfwqss26Ga/view' },
+    { author: 'Amalia Domingo Soler', title: 'Memorias', link: 'https://drive.google.com/file/d/18wwGwEAgpE6yw2yMfmDtjsmMkPVK4Yb8/view' },
+    { author: 'Amalia Domingo Soler', title: 'La Luz que Nos Guía', link: 'https://drive.google.com/file/d/19EHj82tnVr1TI0LXZtpGmb56TR94mXI6/view' },
+    { author: 'Amalia Domingo Soler', title: 'La Luz de la Verdad', link: 'https://drive.google.com/file/d/19NvTNtXwq85upEw_FY83Q4bPOvh9lj_X/view' },
+    { author: 'Amalia Domingo Soler', title: 'La Luz del Porvenir', link: 'https://drive.google.com/file/d/19HP-tQjF2GGPrmLBkyzR6tADqJN-Nfqt/view' },
+    { author: 'Amalia Domingo Soler', title: 'La Luz del Espíritu', link: 'https://drive.google.com/file/d/19MlGb9CXrFTvktJpCTC7d_Y0glyaU6zJ/view' },
+    { author: 'Amalia Domingo Soler', title: 'La Luz del Camino', link: 'https://drive.google.com/file/d/19Musuf_MdCI5y6cckhvybgiYgHitR0M9/view' },
+    { author: 'Amalia Domingo Soler', title: 'La Gran Señora del Espiritismo', link: 'https://drive.google.com/file/d/192YmBhAXmVkdYZSyUOMmEKUm61TESbTy/view' },
+    { author: 'Amalia Domingo Soler', title: 'Las Grandes Virtudes', link: 'https://drive.google.com/file/d/19DcgEmpuVC1xGFMkiUxWt7KMvgSkvZt4/view' },
+    { author: 'Amalia Domingo Soler', title: 'Hechos que Prueban', link: 'https://drive.google.com/file/d/19bTIqYZF_zLuKCvKEktlzyBSAjgoHGj9/view' },
+    { author: 'Amalia Domingo Soler', title: 'El Espiritismo Refutando los Errores del Catolicismo Romano', link: 'https://drive.google.com/file/d/17z1Nw_qCk2WXuFEKG58Nln3HVqIswT7M/view' },
+    { author: 'Amalia Domingo Soler', title: 'Desde la Otra Vida', link: 'https://drive.google.com/file/d/18-rCaGQ8lmBczD2k-U8AmqWzXE54MD8O/view' },
+    { author: 'Amalia Domingo Soler', title: 'Cuentos Espíritas', link: 'https://drive.google.com/file/d/182nt7Q6r37dnnb3gQGoXDjaHh5nKtRKg/view' },
+    { author: 'Amalia Domingo Soler', title: 'Consejo de Ultratumba: Historia de Dos Almas', link: 'https://drive.google.com/file/d/1865qcCoTztUXAu85NbMV97_ai9KPTI9E/view' },
+    // Divaldo Franco
+    { author: 'Divaldo Franco', title: 'S.O.S.', link: 'https://drive.google.com/file/d/11rxIPrSn1wGr1Rk8mHLAOm5eeVLaK-r4/view' },
+    { author: 'Divaldo Franco', title: 'Momentos de Consciencia', link: 'https://drive.google.com/file/d/11lWRbF2ghoKgjqlzpcEkcykOEKMcQftZ/view' },
+    { author: 'Divaldo Franco', title: 'Senderos de Liberación', link: 'https://drive.google.com/file/d/11gNxvKM2kRr01oUTHu6cBTw3wWyxLUvA/view' },
+    { author: 'Divaldo Franco', title: 'Médiuns y Mediumnidades', link: 'https://drive.google.com/file/d/11UwjZ8S-6ZrPZIArrAV-JQaIxY70iikt/view' },
+    { author: 'Divaldo Franco', title: 'La Obsesión: Instalación y Cura', link: 'https://drive.google.com/file/d/11RmKbsximuSshAuoL4O9Hl2U9aoqyHvw/view' },
+    { author: 'Divaldo Franco', title: 'Jesús en la Actualidad', link: 'https://drive.google.com/file/d/11RlmMTbjMvaFtB0ip0JzUFmOLrjZcTQT/view' },
+    { author: 'Divaldo Franco', title: 'Espíritu y Vida', link: 'https://drive.google.com/file/d/11QdMnxlBfbTgr2HiECyhnNBi2n8Sexq5/view' },
+    // Hermínio C. Miranda
+    { author: 'Hermínio C. Miranda', title: 'Diálogo con las Sombras', link: 'https://drive.google.com/file/d/1Amh-lHrQ0hFRSBjWqz84ccYaFY_o5qrI/view' },
+    // Gabriel Delanne
+    { author: 'Gabriel Delanne', title: 'El Alma es Inmortal', link: 'https://drive.google.com/file/d/16UpaI6G6oSeFrWZxNLs7pP_Mq9tMkfbf/view' },
+    { author: 'Gabriel Delanne', title: 'El Espiritismo ante la Ciencia', link: 'https://drive.google.com/file/d/16JpaUNosoKsX24Ip_ONe41GYe-S0SkE9/view' },
+    { author: 'Gabriel Delanne', title: 'Las Vidas Sucesivas', link: 'https://drive.google.com/file/d/16GzGvuBwuK50SQaLk1bLSmWAdOphzFxk/view' },
+    // Helio Rocha da Silveiria Pinto
+    { author: 'Helio Rocha da Silveiria Pinto', title: 'Ya Estaba Escrito', link: 'https://drive.google.com/file/d/16Eyj0CdXYOHefnqzVNrmBGezW7xhAUNh/view' },
+    // Charles Richet
+    { author: 'Charles Richet', title: 'La Gran Esperanza', link: 'https://drive.google.com/file/d/12nLWqIcjUwCknAt3rUku4LoZbOQVKcaf/view' },
+    // Humphry Davy
+    { author: 'Humphry Davy', title: 'Los Últimos Días de un Filósofo', link: 'https://drive.google.com/file/d/1-f_I_It4tYkTqPc0uJmagTagLGTRDj_8/view' },
+    // Henri Sausse
+    { author: 'Henri Sausse', title: 'Pruebas: Aquí las Tienen', link: 'https://drive.google.com/file/d/16B00-g30pN8d4Iuhm7TLa7jz5OWtphWX/view' },
+    { author: 'Henri Sausse', title: 'Biografía de Allan Kardec', link: 'https://drive.google.com/file/d/16EoCDwiXaw_xJa63lNxr50cM1siZUQVN/view' },
+    // Anuario Espírita
+    { author: 'Anuario Espírita', title: 'Anuario Espírita 2015', link: 'https://drive.google.com/file/d/1AqQhoBLY9Yukd_JfjoNUGDcnD9f0DvUk/view' },
+    { author: 'Anuario Espírita', title: 'Anuario Espírita 2014', link: 'https://drive.google.com/file/d/1ArqGntQUJCrfxeS-HOegSJi7Fqkoc1yu/view' },
+    { author: 'Anuario Espírita', title: 'Anuario Espírita 2013', link: 'https://drive.google.com/file/d/1AzZ9Of8plTtbea7xIob55f6y_guLMGkf/view' },
+    { author: 'Anuario Espírita', title: 'Anuario Espírita 2012', link: 'https://drive.google.com/file/d/1B-CZbys2Ee6ei5RK3zD4Md8hARL1c4QG/view' },
+    { author: 'Anuario Espírita', title: 'Anuario Espírita 2011', link: 'https://drive.google.com/file/d/1B20fHB6NLoS9yoEMMoJQ0nIBA5pT2Ge8/view' },
+    { author: 'Anuario Espírita', title: 'Anuario Espírita 2010', link: 'https://drive.google.com/file/d/19ko6jVelwqo-Ph9cF4wbmyeYAVfLjXdc/view' },
+    { author: 'Anuario Espírita', title: 'Anuario Espírita 2009', link: 'https://drive.google.com/file/d/19p36qXKHsvEYZHu-uR9TTc_1-NbBcoXL/view' },
+    { author: 'Anuario Espírita', title: 'Anuario Espírita 2007', link: 'https://drive.google.com/file/d/19vQGG9-_lv7e-qAuNHVks02fE4vmIw3L/view' },
+    { author: 'Anuario Espírita', title: 'Anuario Espírita 2006', link: 'https://drive.google.com/file/d/1A9IrYy34Y3iU717tzX_QUXOJuZQeWgDO/view' },
+    { author: 'Anuario Espírita', title: 'Anuario Espírita 2005', link: 'https://drive.google.com/file/d/1AFRw47KnDw5B0CB0YhdPMWwbH7OtB4pB/view' },
+    { author: 'Anuario Espírita', title: 'Anuario Espírita 2004', link: 'https://drive.google.com/file/d/1AFUpw08up7flVdf9B4HW92vG_Q5gd2aa/view' },
+    { author: 'Anuario Espírita', title: 'Anuario Espírita 2002', link: 'https://drive.google.com/file/d/1AGyIL3pNhsGlAVUsYLbNbn3qYwRaeP87/view' },
+    { author: 'Anuario Espírita', title: 'Anuario Espírita 2001', link: 'https://drive.google.com/file/d/1AIIqwHWNEzYzoQWqajfo4Sd_veKR_4J7/view' },
+    { author: 'Anuario Espírita', title: 'Anuario Espírita 2000', link: 'https://drive.google.com/file/d/1AQ8s2ZL5bqTRbAJ3H5GRXYDloO_Mofas/view' },
+    { author: 'Anuario Espírita', title: 'Anuario Espírita 1999', link: 'https://drive.google.com/file/d/1ARpmxawkbZAcwPwtdPu0pgNn_eSnaYuy/view' },
+    // Camilo Flammarión
+    { author: 'Camilo Flammarión', title: 'Lo Desconocido y los Problemas Psíquicos', link: 'https://drive.google.com/file/d/12qlD9OAioBmyPK_yeVS5zAP7GLLtjaM_/view' },
+    { author: 'Camilo Flammarión', title: 'Orígenes de la Vida', link: 'https://drive.google.com/file/d/12q-Wy9j5TkQKlB4r9hL3fT78Re9JOEcb/view' },
+    { author: 'Camilo Flammarión', title: 'La Muerte y su Misterio', link: 'https://drive.google.com/file/d/12rIRqy-Ab4RcYZHlXk0-2rudxE3XpWdX/view' },
+    // Emmanuel Cristiano
+    { author: 'Emmanuel Cristiano', title: 'Ocurrió en la Casa Espírita', link: 'https://drive.google.com/file/d/13i1qYfuu-dZdmnINGNpSer_YgyLKvLC0/view' },
+    // Daniel Suárez Artaz
+    { author: 'Daniel Suárez Artaz', title: 'Marietta y Estrella: Páginas de Ultratumba de Dos Existencias', link: 'https://drive.google.com/file/d/12UApN7aRPW24szy-L9PD-5VsHmguw7Ns/view' },
+    // D. José Amigó y Pellicer
+    { author: 'D. José Amigó y Pellicer', title: 'Nicodemo o la Inmortalidad del Renacimiento', link: 'https://drive.google.com/file/d/12W6t7hdrvvWurhjkacNjv6FHrGRQyL9I/view' },
+    // Luis Hu Rivas
+    { author: 'Luis Hu Rivas', title: 'Mi Primer Libro Espírita', link: 'https://drive.google.com/file/d/1B2lnROpgqSK2q_3EEtgPHMa8j4oXdLTT/view' },
+    // José Aniorte Alcaraz y Ana María García Asensio
+    { author: 'José Aniorte Alcaraz y Ana María García Asensio', title: 'Hechos y Obras de una Vida', link: 'https://drive.google.com/file/d/1-o60xnic85EAXsW_8R2dUZ0OiG2BC3ff/view' },
+    { author: 'José Aniorte Alcaraz y Ana María García Asensio', title: 'Elucidaciones Espíritas', link: 'https://drive.google.com/file/d/1-tcgGjT6ui_m6fKiceGX1fDPkyd65FyU/view' },
+    // José Mª. Seseras y de Batlle
+    { author: 'José Mª. Seseras y de Batlle', title: 'Carmela', link: 'https://drive.google.com/file/d/1-nHcFCl_YxojqX7WBqDoO6kzwvFfVro_/view' },
+    // J. Herculano Pires
+    { author: 'J. Herculano Pires', title: 'Hora de Testimoniar', link: 'https://drive.google.com/file/d/103ncIelXIEdTi8yP9u4YDTA_WOlwwDV9/view' },
+    { author: 'J. Herculano Pires', title: 'Educación para la Muerte', link: 'https://drive.google.com/file/d/10DE3iyXoKHVoQQfNAUyichBZ-4ILA2Ff/view' },
+    { author: 'J. Herculano Pires', title: 'Pedagogía Espírita', link: 'https://drive.google.com/file/d/10-H5onHRtr70VJ4u2Xrf70j90Nvg_tBO/view' },
+    { author: 'J. Herculano Pires', title: 'Obsesión, Pase y Adoctrinamiento', link: 'https://drive.google.com/file/d/101vTHfVdhWURQkC3G9oDRClovPEUJlhB/view' },
+    { author: 'J. Herculano Pires', title: 'Agonía', link: 'https://drive.google.com/file/d/10HkR-WyWI2NduEUvg1ayCPsIX3xG_nxQ/view' },
+    { author: 'J. Herculano Pires', title: 'El Hombre Nuevo', link: 'https://drive.google.com/file/d/109rXYyEzsjTMtaniRpx5X5vMN1MOhBGD/view' },
+    { author: 'J. Herculano Pires', title: 'El Centro Espírita', link: 'https://drive.google.com/file/d/10DtUwq29GJpZpV4zROdSvMETJOILkkFV/view' },
+    // Izaías Claro
+    { author: 'Izaías Claro', title: 'Depresión', link: 'https://drive.google.com/file/d/10ID6LISgF-HLFMpg-ImNl2KOeXiLki71/view' },
+    // Humberto Mariotti
+    { author: 'Humberto Mariotti', title: 'Victor Hugo, Poeta', link: 'https://drive.google.com/file/d/1Al3PfCp6U0kKyxWBu_m6i1hsD8qMMBwN/view' },
+    // Florentino Barrera
+    { author: 'Florentino Barrera', title: 'El Auto de Fe', link: 'https://drive.google.com/file/d/130iXeOCf7qPrHCwbDb07aK1fbGNYUmSf/view' },
+    // Felipe Senillosa
+    { author: 'Felipe Senillosa', title: 'Excelsior: Cristianismo y Progreso', link: 'https://drive.google.com/file/d/13ErNnhFt2v9pbFHuiMRhXzu0cOEBBB77/view' },
+    { author: 'Felipe Senillosa', title: 'Concordancia del Espiritismo con la Ciencia', link: 'https://drive.google.com/file/d/13GTdNv-0dljZ7olWSVMilpEi84h_Arj0/view' },
+    // Ernesto Bozzano
+    { author: 'Ernesto Bozzano', title: 'Cerebro y Pensamiento', link: 'https://drive.google.com/file/d/13esOBukAoR41doDLOsLISXBlqnbfRXhy/view' },
+    { author: 'Ernesto Bozzano', title: 'La Verdad sobre Metapsíquica Humana', link: 'https://drive.google.com/file/d/13WlJG3dftzPDJquvWTEFu0koeO2nfTwh/view' },
+    { author: 'Ernesto Bozzano', title: 'Pensamiento y Voluntad', link: 'https://drive.google.com/file/d/13TQr8WIiLkV-stlRbtiNOk1_h7t3pLEi/view' },
+    { author: 'Ernesto Bozzano', title: 'Fenómenos de Transporte', link: 'https://drive.google.com/file/d/13bKOa7GLWWB7jBKVXrg_U-vok0zftSYx/view' },
+    { author: 'Ernesto Bozzano', title: 'Fenómenos Psíquicos', link: 'https://drive.google.com/file/d/13eNmhkpOuo2KEmzQq6upERZdbCvG3zC3/view' },
+    { author: 'Ernesto Bozzano', title: 'Animismo o Espiritismo', link: 'https://drive.google.com/file/d/13h6EtMboQ-d3LYbVubJhtpln_r43avRd/view' },
+    { author: 'Ernesto Bozzano', title: 'La Crisis de la Muerte', link: 'https://drive.google.com/file/d/13_h_rLZVegDM3gg2iZvOLC4ersdiP1lO/view' },
+    // Edgar Armond
+    { author: 'Edgar Armond', title: 'Mediumnidad', link: 'https://drive.google.com/file/d/13jqqLJZovG3X_OeHcPDeerhjaoWA0FYl/view' },
+    { author: 'Edgar Armond', title: 'Exiliados de Capela', link: 'https://drive.google.com/file/d/12LEpjU0Baf1HNpr6s0jiyYqD5ve83n6z/view' },
+    // Carlos A. Baccelli
+    { author: 'Carlos A. Baccelli', title: 'Mediumnidad y Obsesión', link: 'https://drive.google.com/file/d/12o0GqzI5OfGbVOdHeId8kbAXIH6Iy-F7/view' },
+    // Esoterismo y Ocultismo
+    { author: 'Esoterismo y Ocultismo', title: 'Fundamentos de la Filosofía Esotérica — G. de Purucker', link: 'https://drive.google.com/file/d/11cTtDRvMG3sz3kkBMUhRIEXsgEVfC9qK/view' },
+    { author: 'Esoterismo y Ocultismo', title: 'Como es Arriba es Abajo: Simbolismo de los Astros en Hermetismo y Astrología — Susana Aznar Álvarez', link: 'https://drive.google.com/file/d/11TYOTqU6GW3V1e-tMWZ0BTsCiVvIUIhg/view' },
+    { author: 'Esoterismo y Ocultismo', title: 'Estudios sobre la Historia del Esoterismo Occidental en América Latina — Juan Pablo Bubello, José Ricardo Chaves y Francisco de Mendonça Júnior', link: 'https://drive.google.com/file/d/11L903dBpc9CrB1D24qjeXHO00lSMBhYj/view' },
+    { author: 'Esoterismo y Ocultismo', title: 'Dogma y Ritual de la Alta Magia — Eliphas Levi', link: 'https://drive.google.com/file/d/11eJjkdve15ESaaPwir8VJxty8mELISLj/view' },
+    { author: 'Esoterismo y Ocultismo', title: '¿Qué es el Ocultismo? (Artículo) — T. Subba Row', link: 'https://drive.google.com/file/d/11tB-w1krJHykfV0C8rr2oXPIQG5E_8Ni/view' },
+    // Alquimia
+    { author: 'Alquimia', title: 'Cinco Tratados de Alquimia — Paracelso, Alberto el Grande, Roger Bacon, R. Lulio y Arnau de Vilanova', link: 'https://drive.google.com/file/d/1-Ov8HjfYfFVU_-BZPzFRjrQT16yz94PV/view' },
+    { author: 'Alquimia', title: 'Alquimia — La Puerta', link: 'https://drive.google.com/file/d/1-RwA2MrBgxaldn9y4is-5BU4VSUpQZFC/view' },
+    { author: 'Alquimia', title: 'La Piedra Filosofal o El Secreto de los Alquimistas — Samael Aun Weor', link: 'https://drive.google.com/file/d/1-ZAcnb7eerTg8M4CERzH4U9ovseQTAaa/view' },
+    { author: 'Alquimia', title: 'El Fuego Secreto — Friedrich Von Licht', link: 'https://drive.google.com/file/d/1-ZHAPRDZqATDP46NT9gAcjVGnqQfQfQG/view' },
+    { author: 'Alquimia', title: 'Alquimia — Titus Burckhardt', link: 'https://drive.google.com/file/d/1-_tPrYowBGrV8zpmusGE5i3TwvtIZt_0/view' },
+    { author: 'Alquimia', title: 'La Alquimia Espiritual — Omraam Mikhaël Aïvanhov', link: 'https://drive.google.com/file/d/1-aUQaZv53tyKltcStohrx1thhy6cHswU/view' },
+    { author: 'Alquimia', title: 'El Maravilloso Libro Mudo de la Alquimia (Artículo) — John F. Moffitt', link: 'https://drive.google.com/file/d/1-c9o_oa5H344a_LajeWCYQGFitUE6lsX/view' },
+    { author: 'Alquimia', title: 'Obras de Alquimia — Universidad de Buenos Aires', link: 'https://drive.google.com/file/d/1-6D9OC6hpWn4gXRgogZteJN_mjOseVH1/view' },
+    { author: 'Alquimia', title: 'La Alquimia (Artículo) — Universo Pittamiglio', link: 'https://drive.google.com/file/d/1-8B4xzhL2F0IG-bMNEuSU7I2Nuzw-5wf/view' },
+    { author: 'Alquimia', title: 'Breve Historia de la Alquimia — Luis E. Iñigo Fernández', link: 'https://drive.google.com/file/d/1-E0CRK5TfqrlZ-GOqPpNUYhC-DilbgI1/view' },
+    { author: 'Alquimia', title: 'Antecedentes de la Disciplina Material en la Antigua China — Eduardo Gozalo', link: 'https://drive.google.com/file/d/1-N7BtnpRpv8yxm6PqeXeJLrWqqNThXyg/view' },
+    { author: 'Alquimia', title: 'Química vs. Alquimia — María Martínez Peña y Andrea Naranjo Pérez', link: 'https://drive.google.com/file/d/1-OIkdQRjeUc3dHX9EElHC_ev24usd3G7/view' },
+    { author: 'Alquimia', title: 'Materiales Avanzados — Instituto de Investigaciones en Materiales', link: 'https://drive.google.com/file/d/1-1w2C2nJjoLejk7tK8jbrsz9ZGXYgyHh/view' },
+    // Karma y Reencarnación
+    { author: 'Karma y Reencarnación', title: 'Karma y Reencarnación — Elizabeth Clare Prophet y Patricia R. Spadaro', link: 'https://drive.google.com/file/d/11Cijm1VRaKz4zJuOtZ33pjhrx5NVr1zb/view' },
+    { author: 'Karma y Reencarnación', title: 'La Ley Universal del Karma — Tan Kheng Khoo', link: 'https://drive.google.com/file/d/10pW4PT1Kuv_3d3yIoFzagP4QaaOo9nLU/view' },
+    { author: 'Karma y Reencarnación', title: 'Leyes del Karma — Recursos y Habilidades', link: 'https://drive.google.com/file/d/10ri2pbTF817_HYWOzC-mvCFBABx3wRH4/view' },
+    { author: 'Karma y Reencarnación', title: 'Cómo Superar el Karma — Byakko', link: 'https://drive.google.com/file/d/10sBnyjLH6iQ4oBpCbfLY349T1Bg9RznS/view' },
+    { author: 'Karma y Reencarnación', title: 'El Ciclo del Alma, Karma, Dharma y Reencarnación (Artículo)', link: 'https://drive.google.com/file/d/112VOt0wrG12Gucb5_PEow2x3t7olhEGa/view' },
+    { author: 'Karma y Reencarnación', title: 'El Karma y el Sendero Budista (Artículo) — Khenpo Phuntzok Tenzin Rinpoche', link: 'https://drive.google.com/file/d/118Yju873SyKyAELKG3GLhjvAvH_fdqrZ/view' },
+    { author: 'Karma y Reencarnación', title: 'Los Señores del Karma — Vicente Beltrán Anglada', link: 'https://drive.google.com/file/d/118dKQOEd84I4imVbSPsrbPZObOi8XsqH/view' },
+    { author: 'Karma y Reencarnación', title: 'La Ley del Karma (Artículo) — Brahma Kumaris', link: 'https://drive.google.com/file/d/119pxs0bY7ndwWS31r3a764jqAGgkya-L/view' },
+    // Regresión de Vida
+    { author: 'Regresión de Vida', title: 'La Terapia Regresiva (Artículo) — Guadalupe Alcaide', link: 'https://drive.google.com/file/d/10gLiBFeHWwj4Apx4UDPktnzZnuQhmAUW/view' },
+    { author: 'Regresión de Vida', title: 'Evidencia de la Existencia de la Zona Entre Vidas — Jorge Luciano Padrón Barragán', link: 'https://drive.google.com/file/d/10bKNurlD4k06Nxa4Rt_CCH3ZK1Gg1ioa/view' },
+    { author: 'Regresión de Vida', title: 'Entre la Progresión y la Regresión — Alexander Alvis Rizzo, Carmen Patricia Duque Sierra y Alexander Rodríguez Bustamante', link: 'https://drive.google.com/file/d/10_G-xjK1xonUh-fgE1DfTVoNykmj1-T5/view' },
+    { author: 'Regresión de Vida', title: 'Freud y el Concepto de Regresión (Artículo) — Michael Balint', link: 'https://drive.google.com/file/d/10STvGlM6pNrNfQzbpWni-pGBbE0MCc5Y/view' },
+    { author: 'Regresión de Vida', title: 'La Regresión Hipnótica: ¿Psicología o Fraude? (Artículo) — Luis F. Díaz Vilela', link: 'https://drive.google.com/file/d/10NnfDlYN1ZSg_i6Tgtmbg0mJc6_yMW_S/view' },
+    { author: 'Regresión de Vida', title: 'La Regresión Cura las Heridas del Alma (Artículo) — Brian Weiss', link: 'https://drive.google.com/file/d/10H0LGacK9zqqE4sgk8llLgWLGybV7DnT/view' },
+    { author: 'Regresión de Vida', title: 'Análisis de los Períodos de Regresión y Transición en el Primer Año de Vida — Carles Rostán Sánchez', link: 'https://drive.google.com/file/d/105SovJLnb2PD94TCaGSG_7c1XfbvpfPv/view' },
+    // Budismo
+    { author: 'Budismo', title: 'El Budismo — Enric Ainsa', link: 'https://drive.google.com/file/d/1-jFQbUDMFOGYuCqxIF_BjkuXZqzYcMnW/view' },
+    { author: 'Budismo', title: 'Manual de Introducción al Budismo — Eduardo Ciancaglini', link: 'https://drive.google.com/file/d/1-uq1pSeRAFMFjUwI-uTxPegKk3ckrUaH/view' },
+    { author: 'Budismo', title: 'Budismo Universal, Budismo Individual — Jean Paul Sarrazín', link: 'https://drive.google.com/file/d/1-yuK8cWbQRJN5MALdsJ4pIPdRPeyB-mJ/view' },
+    { author: 'Budismo', title: 'Apuntes sobre el Budismo — Erich Fromm', link: 'https://drive.google.com/file/d/1-y9m7b8cWwUg7zxBX1rcfmct-ke_grxE/view' },
+    { author: 'Budismo', title: 'La Vida de Buda en Lengua Castellana (1890–1920) — José Ricardo Chaves', link: 'https://drive.google.com/file/d/101Xbe8PHyykCS2ufuviJwrbQbCKZSZTN/view' },
+    { author: 'Budismo', title: 'Budismo Moderno, Vol. 3: Oraciones para la Práctica Diaria — Gueshe Kelsang Gyatso Rimpoché', link: 'https://drive.google.com/file/d/104uevmhtkVvunrm-rhkUuTtJyc6oHBvA/view' },
+    // Cuentos, Fábulas y Crecimiento Personal
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'Hábitos Atómicos', link: 'https://drive.google.com/file/d/1DhiDC_3wSpAbbbKBFPy-Zb9HqthuafRD/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'El Monje que Vendió su Ferrari', link: 'https://drive.google.com/file/d/1s4l7ISVal_n4ATtAS6Oi8fhrA66MwvoW/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'Vibrar en Positivo, Vivir en Positivo — Vex King', link: 'https://drive.google.com/file/d/1nOwVpqjmBu_vr5XuMoturqMsnWU2qNii/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'El Secreto — Rhonda Byrne', link: 'https://drive.google.com/file/d/18hAYqeaG-6ZU8kN-3TMpOrN_fzvZbZeu/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'Los Límites del Amor — W.R.', link: 'https://drive.google.com/file/d/1HN8qGY-TIWDO1tJEztCBRdWmU9fBzFrY/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'Zodiaco y Destino: Signos e Intersignos, Horóscopo Wicca n.º 1', link: 'https://drive.google.com/file/d/1rwQCiEo3g17i7aoJf8Ts6vHdYOLCQf-U/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'Principios Herméticos', link: 'https://drive.google.com/file/d/18D75DlSGJM1TbSLXb32WIZcV-6dFp3sp/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'El Poder de tu Mente Subconsciente — J. M.', link: 'https://drive.google.com/file/d/1GdrpMMWR18teY5NwLtOXPqPFOiqw5__1/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'El Manual del Astrólogo Cuántico — Michael Brooks', link: 'https://drive.google.com/file/d/1HsAzoy-NJkzGCp0GHDn19Aearhty6eUs/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: '26 Maneras para Salir en Cuerpo Astral — Samael Aun Weor', link: 'https://drive.google.com/file/d/1EErGySLo5TGwM7Ispf97TfzmgxJ6_jA3/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'El Sendero del Mago — Deepak Chopra', link: 'https://drive.google.com/file/d/1oc2fCM2NxuM4cVtNELodd4QqZdkSCBOg/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'El Kybalion — Hermes Trismegisto', link: 'https://drive.google.com/file/d/1D068wC9OKNKMkxpeD8n6qvuJhBPp7iIV/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'Sabiduría Hermética', link: 'https://drive.google.com/file/d/1EJwvvHEcIqkbXE_ZLDYnedOnVxG0GKIl/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'Programa Agartha', link: 'https://drive.google.com/file/d/1uYSC6J-FE3gny2MiWpc027unmFhpVxR9/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'Yo y la Energía — Nikola Tesla', link: 'https://drive.google.com/file/d/1_8GJIsKvEyDk4uziGcoR9t9mvLLAZ51P/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'Psicología Revolucionaria', link: 'https://drive.google.com/file/d/14T_Jjyec5TxifzQ1A9wztWS18EOBcVgc/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'Ser 45', link: 'https://drive.google.com/file/d/143nOwkdxeyuHU4AZN7MCQ1sLKEstW7pc/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'Doce Pasos hacia la Iluminación — Israel Regardie', link: 'https://drive.google.com/file/d/1ZGnKCCJIVgjciESeF2dnwwUaAqFT6UNl/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'Tres en Uno', link: 'https://drive.google.com/file/d/1jTZqg8hGjL2lfoyQO0zj-zlhw04Vx97G/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'Tratado Esotérico de Astrología Hermética — Samael Aun Weor', link: 'https://drive.google.com/file/d/1Tyv5xXrbLWHZngkMiTZlzIika0vB99VV/view' },
+    { author: 'Cuentos, Fábulas y Crecimiento Personal', title: 'Visión Extraocular — Jacobo Grinberg', link: 'https://drive.google.com/file/d/1e8gurNb1MVdt8sN9zD8lWdGAJMHlDbPh/view' },
+    // Temas de Interés
+    { author: 'Temas de Interés', title: 'El Espiritismo en la Argentina (Inicio)', link: 'https://drive.google.com/file/d/10tMNQt9fD9fvPtrzwzBNtJoPLazK8PmN/view' },
+    { author: 'Temas de Interés', title: 'Origen del Espiritismo', link: 'https://drive.google.com/file/d/10xUR_sYCgFxzEEs3FRgvVIzPl-BLMrIH/view' },
+    // Otros Títulos de Interés
+    { author: 'Otros Títulos de Interés', title: 'Recuerdos de la Mediumnidad', link: 'https://drive.google.com/file/d/11AM1U-kuc9sl500VlY2cnLT3Wysj5qaX/view' },
+    { author: 'Otros Títulos de Interés', title: 'El Pase — Federación Espírita Brasileña', link: 'https://drive.google.com/file/d/125g8cBjVkA6zyzI1dmvAQK7WjenQmm5B/view' },
+    { author: 'Otros Títulos de Interés', title: 'Historias de Mujeres — Edison Carneiro', link: 'https://drive.google.com/file/d/121VLDtbi86leG8XJU1K_zKSM5tG4zQy2/view' },
+    { author: 'Otros Títulos de Interés', title: '52 Lecciones de Doctrina Espírita para la Niñez — Eliseo Rigonatti', link: 'https://drive.google.com/file/d/11wiOGoiqh6NyRp3xmdnfgjrsGCRCP1-p/view' },
+    { author: 'Otros Títulos de Interés', title: 'Doctrina Espírita: Breve Información — Edison Carneiro', link: 'https://drive.google.com/file/d/11saWl2tiydQD0XjKadDu-vP7MV2TLonH/view' },
+    { author: 'Otros Títulos de Interés', title: 'Tributo a los Grandes Espíritas', link: 'https://drive.google.com/file/d/11sJnNWMlETkAeq9cKwiW2Am7hq1iS8f-/view' },
+    { author: 'Otros Títulos de Interés', title: 'La Médium de las Flores — Vizconde de Torres', link: 'https://drive.google.com/file/d/11By7dFaMmdGJTc5LuiQAhlwmFCS7ewlC/view' },
+    { author: 'Otros Títulos de Interés', title: 'Visiones en el Momento de la Muerte — William Barrett', link: 'https://drive.google.com/file/d/11FiIv8IglojZKZqqz9fg_t6kcLzFGZKC/view' },
+    { author: 'Otros Títulos de Interés', title: 'Visión Espiritista de la Enfermedad — Teresa Vázquez', link: 'https://drive.google.com/file/d/111U0CRDFiKS9ddX9Rqy2fs7GLq_d4u0S/view' },
+    { author: 'Otros Títulos de Interés', title: 'Barrio de los Extraños — Wilson Frungillo Jr.', link: 'https://drive.google.com/file/d/117enaJ0qBnng-dY0qf1JQO2wftQ5MjgA/view' },
+    { author: 'Otros Títulos de Interés', title: 'Crónicas del Despertar — Alfonso Esp.', link: 'https://drive.google.com/file/d/11-MnAagvuy1Oqa9aJCIehSeKuu_2dwoj/view' },
+    { author: 'Otros Títulos de Interés', title: 'Memorias de un Suicida — Yvonne do Amaral Pereira', link: 'https://drive.google.com/file/d/11f6DAQrltO4RpHuTvNNadzI0DIVXBEbE/view' },
+    { author: 'Otros Títulos de Interés', title: 'El Caballero de Numiers — Yvonne A. Pereira', link: 'https://drive.google.com/file/d/10gCKfVcP3j-HXB2jFxSaYEiOtIA1tywu/view' },
+    { author: 'Otros Títulos de Interés', title: 'En las Vorágines del Pecado — Yvonne A. Pereira', link: 'https://drive.google.com/file/d/11eFtVYUuFmK6I30hgVMhZ5Eh864kJR5M/view' },
+    { author: 'Otros Títulos de Interés', title: 'El Drama de la Bretaña — Yvonne A. Pereira', link: 'https://drive.google.com/file/d/10dAHTwPoq8I5Lta3c4jx0lvQoy8WMeJK/view' },
+    { author: 'Otros Títulos de Interés', title: 'Materializaciones', link: 'https://drive.google.com/file/d/10YPBRM3cZ4yPFta6Z8at4M3qwif_8GaP/view' },
+    { author: 'Otros Títulos de Interés', title: 'Alfieri el Marino', link: 'https://drive.google.com/file/d/10zmb02feCgwOcs0GXeOr-jk5op3wtcfe/view' },
+    { author: 'Otros Títulos de Interés', title: 'Pedrito y su Maravilloso Viaje', link: 'https://drive.google.com/file/d/10NoqUZ0q-LlOuPxy3woqGbFqfpVlCOpr/view' },
+    { author: 'Otros Títulos de Interés', title: 'Estudiando la Mediumnidad', link: 'https://drive.google.com/file/d/10_9hgrTKTK5hIPK4lAV8WKPnjuGqtI0n/view' },
+    { author: 'Otros Títulos de Interés', title: 'El Alma de la Materia — Marlene Nobre', link: 'https://drive.google.com/file/d/10tmZfrA4Y52E4sD40RrGxwm3cb_4oLzT/view' },
+    { author: 'Otros Títulos de Interés', title: 'Suicidio, Todo lo que Usted Necesita Saber — Richard Simonetti', link: 'https://drive.google.com/file/d/126_wxM3LSEyewMeiU8LiPlpdYe3-dtcj/view' }
+  ];
+
+  document.getElementById('openModalBtn').onclick = () => modal.classList.add('open');
+  document.getElementById('closeModalBtn').onclick = () => modal.classList.remove('open');
+  document.getElementById('cancelBtn').onclick = () => modal.classList.remove('open');
+
+  async function loadBooks(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }catch(e){
+      return [];
+    }
+  }
+
+  async function saveBooks(books){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(books));
+    }catch(e){
+      console.error('No se pudo guardar la biblioteca', e);
+    }
+  }
+
+  const AUTHOR_PRIORITY = ['Allan Kardec', 'Chico Xavier', 'Ramatis'];
+
+  function renderBooks(customBooks, query){
+    shelfEl.innerHTML = '';
+    const q = (query || '').trim().toLowerCase();
+
+    const seed = SEED_BOOKS.map((b) => ({ ...b, custom: false }));
+    const custom = customBooks.map((b, i) => ({ ...b, custom: true, idx: i }));
+    const all = seed.concat(custom);
+
+    const filtered = q
+      ? all.filter(b =>
+          (b.title || '').toLowerCase().includes(q) ||
+          (b.author || '').toLowerCase().includes(q))
+      : all;
+
+    countEl.textContent = filtered.length + (filtered.length === 1 ? ' libro' : ' libros') +
+      (q ? ' encontrados' : ' en la biblioteca');
+
+    if(!filtered.length){
+      shelfEl.innerHTML = '<div class="empty-note">Ningún libro coincide con la búsqueda.</div>';
+      return;
+    }
+
+    const groups = {};
+    filtered.forEach(b => {
+      const key = (b.author && b.author.trim()) ? b.author.trim() : 'Otros libros agregados';
+      (groups[key] = groups[key] || []).push(b);
+    });
+
+    const orderedKeys = Object.keys(groups).sort((a, b) => {
+      const ia = AUTHOR_PRIORITY.indexOf(a);
+      const ib = AUTHOR_PRIORITY.indexOf(b);
+      if(ia !== -1 || ib !== -1) return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+      if(a === 'Otros libros agregados') return 1;
+      if(b === 'Otros libros agregados') return -1;
+      return a.localeCompare(b, 'es');
+    });
+
+    orderedKeys.forEach(key => {
+      const details = document.createElement('details');
+      details.className = 'author-group';
+      if(q) details.open = true;
+
+      const summary = document.createElement('summary');
+      summary.innerHTML = `<span>${escapeHtml(key)} · ${groups[key].length}</span><span class="toggle">+</span>`;
+      details.appendChild(summary);
+
+      const list = document.createElement('div');
+      list.className = 'author-books';
+      groups[key].forEach(b => {
+        const row = document.createElement('div');
+        row.className = 'book-row';
+        row.innerHTML = `
+          <span class="book-title">${escapeHtml(b.title)}</span>
+          ${b.link ? `<a class="link" href="${escapeHtml(b.link)}" target="_blank" rel="noopener">Abrir</a>` : '<span class="no-link">Sin enlace</span>'}
+          ${b.custom ? `<button class="remove" data-index="${b.idx}">Quitar</button>` : ''}
+        `;
+        list.appendChild(row);
+      });
+      details.appendChild(list);
+      shelfEl.appendChild(details);
+    });
+
+    shelfEl.querySelectorAll('.remove').forEach(btn => {
+      btn.onclick = async (e) => {
+        const idx = parseInt(e.target.getAttribute('data-index'), 10);
+        const current = await loadBooks();
+        current.splice(idx, 1);
+        allBooks = current;
+        await saveBooks(current);
+        renderBooks(current, searchInput.value);
+      };
+    });
+  }
+
+  searchInput.addEventListener('input', () => {
+    renderBooks(allBooks, searchInput.value);
+  });
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = mainNav.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 640) {
+        mainNav.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  clearSearchBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    renderBooks(allBooks, '');
+    searchInput.focus();
+  });
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 340) {
+      backToTopBtn.classList.add('visible');
+    } else {
+      backToTopBtn.classList.remove('visible');
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.classList.contains('open')) {
+      modal.classList.remove('open');
+    }
+  });
+
+  function escapeHtml(str){
+    const d = document.createElement('div');
+    d.textContent = str || '';
+    return d.innerHTML;
+  }
+
+  document.getElementById('saveBtn').onclick = async () => {
+    const title = document.getElementById('bookTitle').value.trim();
+    const author = document.getElementById('bookAuthor').value.trim();
+    const link = document.getElementById('bookLink').value.trim();
+    if(!title) return;
+    const books = await loadBooks();
+    books.push({ title, author, link });
+    allBooks = books;
+    await saveBooks(books);
+    renderBooks(books, searchInput.value);
+    document.getElementById('bookTitle').value = '';
+    document.getElementById('bookAuthor').value = '';
+    document.getElementById('bookLink').value = '';
+    modal.classList.remove('open');
+  };
+
+  (async function init(){
+    const books = await loadBooks();
+    allBooks = books;
+    renderBooks(books);
+  })();
+</script>
+
+</body>
+</html>
