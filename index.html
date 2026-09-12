@@ -1947,6 +1947,7 @@ Haz que mi vida sea un reflejo de tu amor y que, allí donde vaya, pueda sembrar
 <script>
   const STORAGE_KEY = 'biblioteca:books';
   const REQUESTS_KEY = 'biblioteca:requests';
+  const REQUEST_EMAIL = 'biblioteca.senderodeluz@gmail.com';
   const shelfEl = document.getElementById('shelf');
   const countEl = document.getElementById('bookCount');
   const modal = document.getElementById('modalBackdrop');
@@ -2452,6 +2453,12 @@ Haz que mi vida sea un reflejo de tu amor y que, allí donde vaya, pueda sembrar
     saveRequests(requests);
     renderRequests();
 
+    const subject = encodeURIComponent('Solicitud de tema - ' + name);
+    const body = encodeURIComponent(
+      'Nombre: ' + name + '\n\nTema o pregunta solicitada:\n' + topic
+    );
+
+    window.location.href = `mailto:${REQUEST_EMAIL}?subject=${subject}&body=${body}`;
     e.target.reset();
   });
 
