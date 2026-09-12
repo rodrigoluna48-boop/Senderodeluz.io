@@ -97,6 +97,91 @@
     text-shadow: 0 0 24px rgba(229,199,122,0.18);
   }
 
+  .about,
+  .actividades{
+    position: relative;
+    overflow: hidden;
+  }
+  .about{
+    background: var(--bg-night-soft);
+  }
+  .about-grid{
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .about-copy p{
+    color: var(--paper-dim);
+    font-size: 1rem;
+    margin: 0 0 18px;
+    max-width: 66ch;
+  }
+  .mini-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+  }
+  .mini-list li{
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    color: var(--paper-dim);
+    font-size: 0.96rem;
+  }
+  .mini-list li::before{
+    content: '✦';
+    color: var(--gold-soft);
+    flex-shrink: 0;
+  }
+  .about-cards,
+  .activity-grid{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 34px;
+  }
+  .about-card,
+  .activity-card{
+    background: linear-gradient(180deg, rgba(33,29,73,0.96), rgba(23,26,54,0.96));
+    border: 1px solid var(--line);
+    padding: 24px 22px;
+    box-shadow: inset 0 0 0 1px rgba(229,199,122,0.06);
+  }
+  .about-card .icon,
+  .activity-card .icon{
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+  .about-card h3,
+  .activity-card h3{
+    font-size: 1.08rem;
+    color: var(--paper);
+    margin-bottom: 8px;
+  }
+  .about-card p,
+  .activity-card p{
+    color: var(--paper-dim);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  .activity-card .label{
+    display: inline-block;
+    font-size: 0.72rem;
+    color: var(--gold-soft);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .activity-cta{
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+  }
+
   /* ---------- NAV ---------- */
   header.site{
     position: sticky; top:0; z-index: 50;
@@ -622,9 +707,11 @@
       <span></span><span></span><span></span>
     </button>
     <nav class="links" id="mainNav">
+      <a href="#sobre-nosotros">Sobre nosotros</a>
       <a href="#personajes">Personajes</a>
       <a href="#biblioteca">Biblioteca</a>
       <a href="#biografias">Biografías</a>
+      <a href="#actividades">Actividades</a>
       <a href="#reflexion">Reflexión</a>
       <a href="#oraciones">Oraciones</a>
       <a href="#espiritu-verdad">Espíritu de la Verdad</a>
@@ -673,6 +760,81 @@
     <p>Quienes amamos y hoy no vemos físicamente no desaparecen; continúan su camino, así como nosotros continuamos el nuestro. Los lazos creados desde el corazón trascienden el tiempo, la distancia e incluso la muerte, porque el amor es una fuerza que pertenece al alma.</p>
     <p>La verdadera transformación comienza cuando dejamos de preguntarnos "¿por qué me ocurre esto?" y empezamos a preguntarnos "¿qué puedo aprender de esto?". Allí nace la paz, la comprensión y la certeza de que cada paso, por pequeño que parezca, nos acerca a una versión más consciente, amorosa y elevada de nosotros mismos.</p>
     <p>Vivir es evolucionar. Amar es crecer. Servir a los demás es una de las formas más nobles de acercarnos a nuestra mejor esencia y de recordar que el más alto camino no es el del orgullo, sino el de la luz interior.</p>
+  </div>
+</section>
+
+<section class="about" id="sobre-nosotros">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">I.</span>
+      <h2>Sobre nosotros</h2>
+      <p class="desc">Un espacio pensado para estudiar, reflexionar y crecer con profundidad interior.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-copy">
+        <p>Biblioteca Sendero de Luz nace como un proyecto orientado a ofrecer un lugar serio, accesible y ordenado para quienes buscan estudiar la Doctrina Espírita, la evolución espiritual y el desarrollo moral desde una mirada clara y respetuosa.</p>
+        <p>Su propósito es acompañar a personas en búsqueda de sentido, orientación y crecimiento interior, poniendo a disposición materiales de lectura, reflexiones, oraciones, biografías y referencias útiles para el estudio cotidiano.</p>
+      </div>
+      <div class="about-copy">
+        <ul class="mini-list">
+          <li>Estudio organizado y de fácil acceso.</li>
+          <li>Reflexión aplicada a la vida diaria.</li>
+          <li>Material espiritual pensado con profundidad.</li>
+          <li>Un espacio que invita al crecimiento interior.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="about-cards">
+      <article class="about-card">
+        <span class="icon">📚</span>
+        <h3>Estudio responsable</h3>
+        <p>Recursos ordenados por autor y temática para facilitar la lectura, la comparación de ideas y el desarrollo de un criterio propio.</p>
+      </article>
+      <article class="about-card">
+        <span class="icon">🕊️</span>
+        <h3>Reflexión espiritual</h3>
+        <p>Textos y preguntas orientadas a la práctica de la fe, la caridad, la humildad y la mejora moral en la vida cotidiana.</p>
+      </article>
+      <article class="about-card">
+        <span class="icon">🌱</span>
+        <h3>Crecimiento interior</h3>
+        <p>Un enfoque práctico para que cada lectura aporte claridad, serenidad y una mayor conciencia sobre el camino espiritual.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="actividades" id="actividades">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">II.</span>
+      <h2>Actividades y enfoques</h2>
+      <p class="desc">Una estructura pensada para apoyar el estudio, la oración y la evolución personal.</p>
+    </div>
+
+    <div class="activity-grid">
+      <article class="activity-card">
+        <span class="label">Estudio</span>
+        <h3>Encuentros de lectura y análisis</h3>
+        <p>Espacios dedicados a profundizar en obras esenciales, comparar ideas y construir una mirada espiritual más sólida.</p>
+      </article>
+      <article class="activity-card">
+        <span class="label">Reflexión</span>
+        <h3>Preguntas para la conciencia</h3>
+        <p>Actividades orientadas a la autocorrección, la observación interior y la aplicación de principios morales en la vida real.</p>
+      </article>
+      <article class="activity-card">
+        <span class="label">Espiritualidad</span>
+        <h3>Práctica de oración y paz</h3>
+        <p>Recursos de acompañamiento espiritual para fortalecer la fe, la serenidad, la espera y el equilibrio emocional.</p>
+      </article>
+    </div>
+
+    <div class="activity-cta">
+      <a class="btn btn-gold" href="#biblioteca">Explorar la biblioteca</a>
+    </div>
   </div>
 </section>
 
